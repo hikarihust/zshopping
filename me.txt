@@ -1,0 +1,44 @@
+  
+                                        Xây dựng ứng dụng Shopping Online
+                    
+Xây dựng mô hình MVC trong WordPress
+    Prepare
+        Create new Database with name: zshopping
+        https://wordPress.org/download/
+        Download zshopping-5.5.3.zip and unzip, then copy to C:\xampp\htdocs\zshopping
+        C:\Windows\System32\drivers\etc\hosts
+            127.0.0.1       zshopping.xyz
+        C:\xampp\apache\conf\extra\httpd-vhosts.conf
+            <VirtualHost *:80>
+                ServerAdmin zshopping.xyz
+                DocumentRoot "C:/xampp/htdocs/zshopping"
+                ServerName zshopping.xyz
+                ErrorLog "logs/zshopping.xyz-error.log"
+                CustomLog "logs/zshopping.xyz-access.log" common
+            </VirtualHost>
+        Browser access http://zshopping.xyz/wp-admin/setup-config.php
+        Language: English 
+        ↓
+        Database name: zshopping
+        Database username: root
+        Database password:
+        Database host: localhost
+        Table prefix: wp_
+        ↓
+        Information needed
+        Site Title: Zshopping
+        Username: admin
+        Password: 123456
+        Confirm use of weak password
+        Your Email: vudinhquangk53@gmail.com
+        Search engine visibility
+        -> Install 
+        ↓
+        Login with Username: admin and Password: 123456
+        Will be entry http://zshopping.xyz/wp-admin/
+        Thay đổi giao diện cho Visit Site
+            Appearance -> Themes -> Add New -> Popular 
+            Twenty Ten -> Install -> Active
+        Lap trinh Zshopping -> Visit Site -> Will be entry http://zshopping.xyz/ and see that Twenty Ten will be display 
+        https://api.wordpress.org/secret-key/1.1/salt/
+    
