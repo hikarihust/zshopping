@@ -41,4 +41,5 @@ Xây dựng mô hình MVC trong WordPress
             Twenty Ten -> Install -> Active
         Lap trinh Zshopping -> Visit Site -> Will be entry http://zshopping.xyz/ and see that Twenty Ten will be display 
         https://api.wordpress.org/secret-key/1.1/salt/
+    MVC 1
     
