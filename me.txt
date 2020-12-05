@@ -56,4 +56,7 @@ Xây dựng mô hình MVC trong WordPress
     MVC 3
     MVC 4
     MVC 5
+    MVC 6
+        WP_HTTP_Requests_Response::get_headers()
+            Retrieves headers associated with the response.
     
