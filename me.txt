@@ -54,4 +54,5 @@ Xây dựng mô hình MVC trong WordPress
             Invoices
             Settings 
     MVC 3
+    MVC 4
     

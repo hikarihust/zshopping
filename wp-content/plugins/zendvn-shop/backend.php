@@ -38,5 +38,30 @@ class Zendvn_Sp_Backend{
 			$obj = $zController->getController('AdminShopping','/backend');		
 			$obj->display();
 		}
+
+		if($page == 'zendvn-sp-manager-categories'){
+			$obj = $zController->getController('AdminCategory','/backend');
+			$obj->display();
+		}
+
+		if($page == 'zendvn-sp-manager-products'){
+			$obj = $zController->getController('AdminProduct','/backend');
+			$obj->display();
+		}
+		
+		if($page == 'zendvn-sp-manager-manufacturer'){
+			$obj = $zController->getController('AdminManufacturer','/backend');
+			$obj->display();
+		}
+		
+		if($page == 'zendvn-sp-manager-invoices'){
+			$obj = $zController->getController('AdminInvoices','/backend');
+			$obj->display();
+		}		
+
+		if($page == 'zendvn-sp-manager-settings'){
+			$obj = $zController->getController('AdminSetting','/backend');
+			$obj->display();
+		}
     }
 }
