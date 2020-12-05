@@ -53,4 +53,5 @@ Xây dựng mô hình MVC trong WordPress
             Manufacturer
             Invoices
             Settings 
+    MVC 3
     
