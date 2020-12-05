@@ -21,3 +21,6 @@ if(is_admin()){
 	require_once 'frontend.php';
 	new Zendvn_Sp_Frontend();
 }
+
+$zController->getController('AdminProduct','/backend');
+$zController->getController('AdminCategory','/backend');
