@@ -55,4 +55,5 @@ Xây dựng mô hình MVC trong WordPress
             Settings 
     MVC 3
     MVC 4
+    MVC 5
     
