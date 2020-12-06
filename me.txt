@@ -63,4 +63,5 @@ Custom Admin menu cho Plugin
     Custom Admin menu 1
     Custom Admin menu 2
         Di chuyển link cho các menu trong Plugin
+    Custom Admin menu 3
     

@@ -3,6 +3,16 @@ class Zendvn_Sp_AdminMenu_Helper{
 
 	public function __construct(){
         add_action("admin_menu", array($this,'modify_admin_menus'));
+		if(isset($_GET['post_type']) && $_GET['post_type'] == 'zsproduct'){
+			add_action('admin_enqueue_scripts', array($this,'add_js'));
+		}
+    }
+    
+	public function add_js(){
+		global $zController;
+		
+		wp_enqueue_script('zendvn_sp_admin_menu',$zController->getJsUrl('admin_menu.js'),
+						array('jquery'),'1.0.0',false);
 	}
 
     function modify_admin_menus(){
