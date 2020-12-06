@@ -3,6 +3,11 @@ class zController {
 	public function __construct($options = array()){
 		
 	}
+
+	public function isPost(){
+		$flag = ($_SERVER['REQUEST_METHOD']=='POST') ? true : false;
+		return $flag;
+	}
 	
 	public function getParams($name = null){
 		
