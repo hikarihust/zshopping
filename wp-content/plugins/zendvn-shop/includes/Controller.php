@@ -1,5 +1,9 @@
 <?php
 class zController {
+	public $_error = array();
+	
+	public $_data = array();
+	
 	public function __construct($options = array()){
 		
 	}

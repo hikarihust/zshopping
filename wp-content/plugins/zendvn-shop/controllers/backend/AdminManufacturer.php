@@ -36,7 +36,8 @@ class Zendvn_Sp_AdminManufacturer_Controller{
 		if($zController->isPost()){
 			$validate = $zController->getValidate('Manufacturer');
 			if($validate->isValidate() == false) {
-
+				$zController->_error = $validate->getError();
+				$zController->_data = $validate->getData();
 			} else {
 				// Luu vao database
 			}
