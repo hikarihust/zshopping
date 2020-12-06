@@ -37,7 +37,41 @@ class Zendvn_Sp_Manufacturer_Model extends WP_List_Table {
 			'per_page' 		=> $per_page,
 			'total_pages' 	=> $total_pages
 		));
-    }
+	}
+
+	public function column_name($item){
+		
+		global $zController;
+		
+		$page = $zController->getParams('page');
+	
+		$name = 'security_code';
+	
+		$lnkDelete =  add_query_arg(array('action'=>'delete','id'=>$item['id']));
+		$action 	= 'delete_id_' . $item['id'];
+		$lnkDelete = wp_nonce_url($lnkDelete,$action,$name);
+	
+		$actions = array(
+				'edit' 		=> '<a href="?page=' . $page . '&action=edit&id=' . $item['id'] . '">Edit</a>',
+				'delete' 	=> '<a href="' . $lnkDelete . '">Delete</a>',
+				'view' 		=> '<a href="#">View</a>'
+		);
+	
+		$html = '<strong><a href="?page=' . $page . '&action=edit&id=' . $item['id'] . '">' . $item['name'] .'</a></strong>'
+				. $this->row_actions($actions);
+		return $html;
+	}
+
+	public function column_cb($item){
+		$singular = $this->_args['singular'];
+		$html = '<input id="cb-select-' . $item['id'] . '" type="checkbox" name="' . $singular .'[]" value="' . $item['id'] .'" />';
+		return $html;
+	}
+	
+	public function column_default($item, $column_name){
+	
+		return $item[$column_name];
+	}
 
 	private function total_items(){
 		global $wpdb;

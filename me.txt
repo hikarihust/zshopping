@@ -69,4 +69,20 @@ Xây dựng hệ thống quản lý manufacturer(Backend)
     GetParams function
         new wp_zendvn_sp_manufacturer table: id, name, slug, status 
     List items 1
+    List items 2
+        esc_html__( string $text, string $domain = 'default' )
+            Retrieve the translation of $text and escapes it for safe use in HTML output.
+        public function __construct(){
+            parent::__construct(array(
+                'plural' => 'id',
+                'singular' => 'id',
+                'ajax' => false,
+                'screen' => null,
+            ));
+        }
+        public function column_cb($item){
+            $singular = $this->_args['singular'];
+            $html = '<input id="cb-select-' . $item['id'] . '" type="checkbox" name="' . $singular .'[]" value="' . $item['id'] .'" />';
+            return $html;
+        }
     
