@@ -12,7 +12,11 @@ class Zendvn_Sp_Backend{
 
 	public function menus(){
 		add_menu_page('ZShopping', 'ZShopping', 'manage_options', $this->_menuSlug,
-                        array($this,'dispatch_function'),'',3);		
+						array($this,'dispatch_function'),'',3);		
+						
+		//Dashboard
+		add_submenu_page($this->_menuSlug, 'Dashboard', 'Dashboard', 'manage_options',
+						$this->_menuSlug,array($this,'dispatch_function'));
                         
         add_submenu_page($this->_menuSlug, 'Categories', 'Categories', 'manage_options', 
 						$this->_menuSlug . '-categories',array($this,'dispatch_function'));						

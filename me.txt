@@ -61,4 +61,6 @@ Xây dựng mô hình MVC trong WordPress
             Retrieves headers associated with the response.
 Custom Admin menu cho Plugin
     Custom Admin menu 1
+    Custom Admin menu 2
+        Di chuyển link cho các menu trong Plugin
     

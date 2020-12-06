@@ -17,6 +17,8 @@ $zController = new zController();
 if(is_admin()){
 	require_once 'backend.php';
 	new Zendvn_Sp_Backend();
+
+	$zController->getHelper('AdminMenu');
 } else {
 	require_once 'frontend.php';
 	new Zendvn_Sp_Frontend();
