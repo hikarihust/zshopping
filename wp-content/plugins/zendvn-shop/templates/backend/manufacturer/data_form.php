@@ -1,5 +1,18 @@
 <?php 
-	global $zController;
+    global $zController;
+    
+	$msg = '';
+	if(count($zController->_error) > 0){
+		$msg .= '<div class="error"><ul>';		
+		foreach ($zController->_error as $key => $val){
+			$msg .= '<li>' . $val . '</li>';
+		}
+		$msg .= '</ul></div>';
+    }
+    
+	$vName 		= sanitize_text_field($zController->_data['name']);
+	$vSlug		= sanitize_title($zController->_data['slug']);
+	$vStatus	= absint($zController->_data['status']);
     
 	//Khoi tao doi tuong ZendvnHTML
 	$htmlObj = new ZendvnHtml();
@@ -20,7 +33,8 @@
 	
 ?>
 <div class="wrap">
-	<h2><?php echo $lbl;?></h2>
+    <h2><?php echo $lbl;?></h2>
+    <?php echo $msg;?>
 	<form method="post" action="" id="<?php echo $page;?>"
 		enctype="multipart/form-data">
 		<input name="action" value="<?php echo $action;?>" type="hidden">				

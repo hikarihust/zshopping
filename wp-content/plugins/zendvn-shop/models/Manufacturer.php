@@ -193,5 +193,15 @@ class Zendvn_Sp_Manufacturer_Model extends WP_List_Table {
 	public function get_hidden_columns(){
 		return array();
 	}
-    
+
+	public function save_item($arrData = array(), $options = array()) {
+		global $zController, $wpdb;
+		$action = $arrData['action'];
+		$slug = '';
+		if(empty($arrData['slug'])){
+			$slug = sanitize_title($arrData['name']);
+		}else{
+			$slug = sanitize_title($arrData['slug']);
+		}
+	}
 }

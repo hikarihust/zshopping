@@ -40,6 +40,8 @@ class Zendvn_Sp_AdminManufacturer_Controller{
 				$zController->_data = $validate->getData();
 			} else {
 				// Luu vao database
+				$model = $zController->getModel('Manufacturer');
+				$model->save_item($validate->getData());
 			}
 		}
 		
