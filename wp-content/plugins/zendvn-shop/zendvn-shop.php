@@ -15,6 +15,10 @@ global $zController;
 $zController = new zController();
 
 if(is_admin()){
+	if(!class_exists('ZendvnHtml')){
+		require_once ZENDVN_SP_INCLUDE_PATH . '/html.php';
+	}
+	
 	require_once 'backend.php';
 	new Zendvn_Sp_Backend();
 

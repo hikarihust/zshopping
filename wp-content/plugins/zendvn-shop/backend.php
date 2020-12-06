@@ -11,8 +11,10 @@ class Zendvn_Sp_Backend{
     }
 
 	public function menus(){
+		global $zController;
+		$iconUrl = $zController->getImageUrl('/icons/shopping.png');
 		add_menu_page('ZShopping', 'ZShopping', 'manage_options', $this->_menuSlug,
-						array($this,'dispatch_function'),'',3);		
+						array($this,'dispatch_function'),$iconUrl,3);		
 						
 		//Dashboard
 		add_submenu_page($this->_menuSlug, 'Dashboard', 'Dashboard', 'manage_options',

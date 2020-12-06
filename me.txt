@@ -85,4 +85,5 @@ Xây dựng hệ thống quản lý manufacturer(Backend)
             $html = '<input id="cb-select-' . $item['id'] . '" type="checkbox" name="' . $singular .'[]" value="' . $item['id'] .'" />';
             return $html;
         }
+    List items 3
     

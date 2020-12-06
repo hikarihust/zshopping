@@ -39,6 +39,60 @@ class Zendvn_Sp_Manufacturer_Model extends WP_List_Table {
 		));
 	}
 
+	public function get_bulk_actions(){
+		$actions = array(
+				'delete' => 'Delete',
+				'active' => 'Active',
+				'inactive' => 'Inactive'
+		);
+		return $actions;
+	}
+
+	public function column_status($item){
+		global $zController;
+			
+		if($item['status'] == 1 ){
+			$action = 'inactive';
+			$src = $zController->getImageUrl('/icons/active.png');
+		}else{
+			$action = 'active';
+			$src = $zController->getImageUrl('/icons/inactive.png');
+		}
+		$paged = max(1,@$_REQUEST['paged']);
+			
+		$name 		= 'security_code';
+		$lnkStatus 	= add_query_arg(array('action'=>$action,'id'=>$item['id'],'paged'=> $paged));
+		$action 	= $action . '_id_' . $item['id'];
+		$lnkStatus 	= wp_nonce_url($lnkStatus,$action,$name);
+			
+		$html = '<img alt="" src="' . $src . '">';
+		$html = '<a href="' . $lnkStatus . '">' . $html . '</a>';
+		return $html;
+	}
+
+	protected function extra_tablenav($which){
+		
+		if($which == 'top'){
+			$htmlObj =  new ZendvnHtml();
+				
+			$filterVal = @$_REQUEST['filter_status'];
+			$options['data'] = array(
+					'0' => 'Status filter',
+					'active' => 'Active',
+					'inactive' => 'Inactive'
+			);
+				
+			$slbFilter 	= $htmlObj->selectbox('filter_status',$filterVal,array(),$options);
+				
+			$attr 		= array('id'=>'filter_action','class'=>'button');
+			$btnFilter 	= $htmlObj->button('filter_action','Filter',$attr);
+				
+			echo '<div class="alignleft actions bulkactions">'
+				 . $slbFilter . $btnFilter
+				 .'</div>';
+		}
+	}
+
 	public function column_name($item){
 		
 		global $zController;
