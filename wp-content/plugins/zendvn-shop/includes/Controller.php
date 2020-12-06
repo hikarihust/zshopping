@@ -2,7 +2,17 @@
 class zController {
 	public function __construct($options = array()){
 		
-    }
+	}
+	
+	public function getParams($name = null){
+		
+		if($name == null || empty($name)){
+			return $_REQUEST;
+		}else{
+			$val = (isset($_REQUEST[$name]) && !empty($_REQUEST[$name])) ? $_REQUEST[$name] : '';
+			return $val;
+		}
+	}
     
 	public function getController($filename = '', $dir = ''){
 		

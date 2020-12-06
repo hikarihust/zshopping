@@ -65,4 +65,7 @@ Custom Admin menu cho Plugin
         Di chuyển link cho các menu trong Plugin
     Custom Admin menu 3
     Custom Admin menu 4
+Xây dựng hệ thống quản lý manufacturer(Backend)
+    GetParams function
+        new wp_zendvn_sp_manufacturer table: id, name, slug, status 
     
