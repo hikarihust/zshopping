@@ -57,7 +57,6 @@ class Zendvn_Sp_Backend{
 		
 		if($page == 'zendvn-sp-manager-manufacturer'){
 			$obj = $zController->getController('AdminManufacturer','/backend');
-			$obj->display();
 		}
 		
 		if($page == 'zendvn-sp-manager-invoices'){

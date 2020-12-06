@@ -31,7 +31,18 @@ class Zendvn_Sp_AdminManufacturer_Controller{
 	}
 
 	public function add() {
+		global $zController;
 
+		if($zController->isPost()){
+			$validate = $zController->getValidate('Manufacturer');
+			if($validate->isValidate() == false) {
+
+			} else {
+				// Luu vao database
+			}
+		}
+		
+		$zController->getView('/manufacturer/data_form.php','/backend');
 	}
 
 	public function edit() {
