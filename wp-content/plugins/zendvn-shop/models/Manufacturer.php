@@ -203,5 +203,13 @@ class Zendvn_Sp_Manufacturer_Model extends WP_List_Table {
 		}else{
 			$slug = sanitize_title($arrData['slug']);
 		}
+
+		$slugHelper = $zController->getHelper('CreateSlug');
+		if($action == 'add'){
+			$optionSlug = array('table'=>'zendvn_sp_manufacturer','field'=>'slug');
+		}else if($action == 'edit'){
+
+		}
+		$slug 		= $slugHelper->getSlug($slug, $optionSlug);
 	}
 }
