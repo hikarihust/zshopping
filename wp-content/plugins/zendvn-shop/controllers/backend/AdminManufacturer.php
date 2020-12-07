@@ -72,7 +72,21 @@ class Zendvn_Sp_AdminManufacturer_Controller{
 	}
 
 	public function delete() {
+		global $zController;
+		$arrParam = $zController->getParams();
 
+		if(!is_array($arrParam['id'])){
+			$action 	= 'delete_id_' . $arrParam['id'];
+			check_admin_referer($action,'security_code');
+		}else{
+			wp_verify_nonce('_wpnonce');
+		}
+		
+		$model = $zController->getModel('Manufacturer');
+		$model->deleteItem($arrParam);
+		
+		$url = 'admin.php?page=' . $_REQUEST['page']. '&msg=1';
+		wp_redirect($url);
 	}
 
 	public function status() {

@@ -99,4 +99,5 @@ Xây dựng hệ thống quản lý manufacturer(Backend)
     Change status
         check_admin_referer($action,'security_code');
         wp_verify_nonce('_wpnonce');
+    Delete item
     

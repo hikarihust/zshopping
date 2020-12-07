@@ -194,6 +194,22 @@ class Zendvn_Sp_Manufacturer_Model extends WP_List_Table {
 		return array();
 	}
 
+	public function deleteItem($arrData = array(), $options = array()){		
+		global $wpdb;
+		
+		$table 	= $wpdb->prefix . 'zendvn_sp_manufacturer';
+		
+		if(!is_array($arrData['id'])){
+			$where 	= array('id' => absint($arrData['id']));			
+			$wpdb->delete($table, $where);
+		}else{
+			$arrData['id'] = array_map('absint', $arrData['id']);
+			$ids = join(',', $arrData['id']);
+			$sql = "DELETE FROM $table WHERE id IN ($ids)";
+			$wpdb->query($sql);
+		}
+	}
+
 	public function changeStatus($arrData = array(), $options = array()){		
 		global $wpdb;
 		
