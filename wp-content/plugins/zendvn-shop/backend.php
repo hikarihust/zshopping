@@ -58,7 +58,6 @@ class Zendvn_Sp_Backend{
 
 		if($page == 'zendvn-sp-manager-products'){
 			$obj = $zController->getController('AdminProduct','/backend');
-			$obj->display();
 		}
 		
 		if($page == 'zendvn-sp-manager-manufacturer'){
