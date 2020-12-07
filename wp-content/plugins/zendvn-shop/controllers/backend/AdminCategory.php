@@ -21,6 +21,8 @@ class Zendvn_Sp_AdminCategory_Controller{
     }
 
     public function display() {
+        global $zController;
+        $tagID = ($zController->getParams('tag_ID') !='' ) ? $zController->getParams('tag_ID') : '';
         $htmlObj = new ZendvnHtml();
 		//Tao phan tu chua Button
 		$inputID 	= $this->create_id('button');
@@ -34,14 +36,33 @@ class Zendvn_Sp_AdminCategory_Controller{
 		$inputID 	= $this->create_id('picture');
 		$inputName 	= $this->create_name('picture');
 		$inputValue = '';
-		$arr 		= array('size' =>'40','id' => $inputID);
-		$html 		= 	'<div class="form-field">'
-						. $htmlObj->label(translate('Picture'),array('for'=>"tag-name"))
-						. $htmlObj->textbox($inputName,$inputValue,$arr) 
-						. ' ' . $btnMedia
-                        . $htmlObj->pTag(esc_html__('Upload image for ZS category'))
-                        . '</div>';
-        echo $html;	
+        $arr 		= array('size' =>'40','id' => $inputID);
+        
+        if(!$tagID) {
+            $html 		= 	'<div class="form-field">'
+            . $htmlObj->label(translate('Picture'),array('for'=>"tag-name"))
+            . $htmlObj->textbox($inputName,$inputValue,$arr) 
+            . ' ' . $btnMedia
+            . $htmlObj->pTag(esc_html__('Upload image for ZS category'))
+            . '</div>';
+            echo $html;	
+
+            echo $htmlObj->btn_media_script($this->create_id('button'), $this->create_id('picture'));
+        }else if($tagID != '') {
+			$lblPicture 	= $htmlObj->label(esc_html__('Picture'),array('for'=>$inputID));
+			$inputPicture 	= $htmlObj->textbox($inputName,$inputValue,$arr);
+			$pPicture		= $htmlObj->pTag(esc_html__('Upload image for ZS category'),array('class'=>'description'));
+			$jsMedia		= $htmlObj->btn_media_script($this->create_id('button'),$this->create_id('picture'));
+			
+			$data = array();
+			$data['lblPicture'] 	= $lblPicture;
+			$data['input'] 			= $inputPicture . $btnMedia . $jsMedia;
+			$data['pPicture'] 		= $pPicture;
+			
+			$zController->_data = $data;
+			
+			$zController->getView('category/display.php','/backend');
+        }
     }
 
 	public function add_js_file(){
