@@ -194,6 +194,16 @@ class Zendvn_Sp_Manufacturer_Model extends WP_List_Table {
 		return array();
 	}
 
+	public function getItem($arrData = array(), $options = array()){
+		global $wpdb;
+		
+		$id = absint($arrData['id']);
+		$table = $wpdb->prefix . 'zendvn_sp_manufacturer';
+		$sql = "SELECT * FROM $table WHERE id = $id";
+		$row = $wpdb->get_row($sql, ARRAY_A);
+		return $row;
+	}
+
 	public function save_item($arrData = array(), $options = array()) {
 		global $zController, $wpdb;
 		$action = $arrData['action'];

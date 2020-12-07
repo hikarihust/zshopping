@@ -51,7 +51,24 @@ class Zendvn_Sp_AdminManufacturer_Controller{
 	}
 
 	public function edit() {
-
+		global $zController;
+		if($zController->isPost() == false){
+			$model = $zController->getModel('Manufacturer');
+			$zController->_data = $model->getItem($zController->getParams());		
+		}else{
+			$validate = $zController->getValidate('Manufacturer');
+			if($validate->isValidate() == false) {
+				$zController->_error = $validate->getError();
+				$zController->_data = $validate->getData();
+			} else {
+				// Luu vao database
+				$model = $zController->getModel('Manufacturer');
+				$model->save_item($validate->getData());
+				$url = 'admin.php?page=' . $_REQUEST['page'] . '&msg=1';
+				wp_redirect($url);
+			}
+		}
+		$zController->getView('/manufacturer/data_form.php','/backend');
 	}
 
 	public function delete() {
