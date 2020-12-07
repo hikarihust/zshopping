@@ -96,4 +96,7 @@ Xây dựng hệ thống quản lý manufacturer(Backend)
             wp_redirect($url);
     Edit item 1
     Edit item 2
+    Change status
+        check_admin_referer($action,'security_code');
+        wp_verify_nonce('_wpnonce');
     

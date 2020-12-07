@@ -194,6 +194,24 @@ class Zendvn_Sp_Manufacturer_Model extends WP_List_Table {
 		return array();
 	}
 
+	public function changeStatus($arrData = array(), $options = array()){		
+		global $wpdb;
+		
+		$table 	= $wpdb->prefix . 'zendvn_sp_manufacturer';
+		$status = ($arrData['action'] == 'active') ? 1 : 0;
+		
+		if(!is_array($arrData['id'])){
+			$data 	= array('status' => absint($status));
+			$where 	= array('id' => absint($arrData['id']));			
+			$wpdb->update($table, $data, $where);
+		}else{
+			$arrData['id'] = array_map('absint', $arrData['id']);
+			$ids = join(',', $arrData['id']);
+			$sql = "UPDATE $table SET status = $status WHERE id IN ($ids)";
+			$wpdb->query($sql);
+		}
+	}
+
 	public function getItem($arrData = array(), $options = array()){
 		global $wpdb;
 		

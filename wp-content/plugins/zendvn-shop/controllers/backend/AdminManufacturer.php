@@ -76,7 +76,22 @@ class Zendvn_Sp_AdminManufacturer_Controller{
 	}
 
 	public function status() {
+		global $zController;
+		$arrParam = $zController->getParams();
 
+		if(!is_array($arrParam['id'])){
+			$action 	= $arrParam['action'] . '_id_' . $arrParam['id'];
+			check_admin_referer($action,'security_code');
+		}else{
+			wp_verify_nonce('_wpnonce');
+		}
+		
+		$model = $zController->getModel('Manufacturer');
+		$model->changeStatus($arrParam);
+		
+		$paged = max(1, $arrParam['paged']);
+		$url = 'admin.php?page=' . $_REQUEST['page'] . '&paged=' . $paged . '&msg=1';
+		wp_redirect($url);
 	}
 
 	public function no_access() {
