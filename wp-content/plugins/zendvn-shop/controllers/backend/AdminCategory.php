@@ -16,12 +16,20 @@ class Zendvn_Sp_AdminCategory_Controller{
             add_action('zs_category_edit_form_fields', array($this,'display'));
 
 			add_action('admin_enqueue_scripts', array($this,'add_js_file'));
-			add_action('admin_enqueue_scripts', array($this,'add_css_file'));
+            add_action('admin_enqueue_scripts', array($this,'add_css_file'));
+            
+            add_action('edited_zs_category', array($this,'save'));
+            add_action('create_zs_category', array($this,'save'));
         }
     }
 
-    public function display() {
+    public function display($term) {
         global $zController;
+
+		if(is_object($term)){
+			$option_name = $this->_prefix_id . $term->term_id;
+			$option_value = get_option($option_name);	
+		}
         $tagID = ($zController->getParams('tag_ID') !='' ) ? $zController->getParams('tag_ID') : '';
         $htmlObj = new ZendvnHtml();
 		//Tao phan tu chua Button
@@ -35,7 +43,7 @@ class Zendvn_Sp_AdminCategory_Controller{
 		//Tao phan tu chua file
 		$inputID 	= $this->create_id('picture');
 		$inputName 	= $this->create_name('picture');
-		$inputValue = '';
+		$inputValue = esc_url(@$option_value['picture']);
         $arr 		= array('size' =>'40','id' => $inputID);
         
         if(!$tagID) {
@@ -64,6 +72,15 @@ class Zendvn_Sp_AdminCategory_Controller{
 			$zController->getView('category/display.php','/backend');
         }
     }
+
+	public function save($term_id){
+		global $zController;
+		
+		if($zController->isPost()){
+			$option_name = $this->_prefix_id . $term_id;
+			update_option($option_name, $zController->getParams($this->_prefix_name));
+		}
+	}
 
 	public function add_js_file(){
 		global $zController;
