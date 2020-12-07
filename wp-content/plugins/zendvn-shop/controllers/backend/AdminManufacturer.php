@@ -42,6 +42,8 @@ class Zendvn_Sp_AdminManufacturer_Controller{
 				// Luu vao database
 				$model = $zController->getModel('Manufacturer');
 				$model->save_item($validate->getData());
+				$url = 'admin.php?page=' . $_REQUEST['page'] . '&msg=1';
+				wp_redirect($url);
 			}
 		}
 		

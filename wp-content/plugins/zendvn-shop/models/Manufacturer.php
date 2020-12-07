@@ -211,5 +211,18 @@ class Zendvn_Sp_Manufacturer_Model extends WP_List_Table {
 
 		}
 		$slug 		= $slugHelper->getSlug($slug, $optionSlug);
+
+		$table = $wpdb->prefix . 'zendvn_sp_manufacturer';
+		$data = array(
+					'name' 		=> $arrData['name'],
+					'slug' 		=> $slug,
+					'status' 	=> $arrData['status']
+				);
+		$format = array('%s','%s','%d');
+		if($action == 'add'){
+			$wpdb->insert($table, $data, $format);
+		}else if ($action == 'edit'){
+
+		}
 	}
 }

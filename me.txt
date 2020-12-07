@@ -90,4 +90,8 @@ Xây dựng hệ thống quản lý manufacturer(Backend)
     Add item 2
     Add item 3
     Add item 4
+    Add item 5
+        ob_start();
+            Warning: Cannot modify header information - headers already sent by ~
+            wp_redirect($url);
     
