@@ -95,4 +95,5 @@ Xây dựng hệ thống quản lý manufacturer(Backend)
             Warning: Cannot modify header information - headers already sent by ~
             wp_redirect($url);
     Edit item 1
+    Edit item 2
     

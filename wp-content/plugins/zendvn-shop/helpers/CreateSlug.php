@@ -26,7 +26,14 @@ class Zendvn_Sp_CreateSlug_Helper {
 				$sql = $wpdb->prepare($sql, '%s','%s','%s');
 				$result = $wpdb->get_col($sql);
 			}else{
-				
+				$excep_field = $options['exception']['field'];
+				$excep_value = $options['exception']['value'];
+				$sql = "SELECT COUNT(id)
+						FROM $table
+						WHERE $field = '$newVal'
+						AND $excep_field != $excep_value";
+				$sql = $wpdb->prepare($sql, '%s','%s','%s','%s','%d');
+				$result = $wpdb->get_col($sql);
 			}
 			if($result[0] == 0) return $newVal;
 		}

@@ -217,8 +217,12 @@ class Zendvn_Sp_Manufacturer_Model extends WP_List_Table {
 		$slugHelper = $zController->getHelper('CreateSlug');
 		if($action == 'add'){
 			$optionSlug = array('table'=>'zendvn_sp_manufacturer','field'=>'slug');
-		}else if($action == 'edit'){
-
+		}else if($action == 'edit') {
+			$optionSlug = array('table'=>'zendvn_sp_manufacturer',
+								'field'=>'slug',
+								'exception' => array('field' => 'id', 
+													 'value'=> absint($arrData['id']))
+							);
 		}
 		$slug 		= $slugHelper->getSlug($slug, $optionSlug);
 
@@ -231,8 +235,9 @@ class Zendvn_Sp_Manufacturer_Model extends WP_List_Table {
 		$format = array('%s','%s','%d');
 		if($action == 'add'){
 			$wpdb->insert($table, $data, $format);
-		}else if ($action == 'edit'){
-
+		} else if ($action == 'edit'){
+			$where = array('id'=> absint($arrData['id']));
+			$wpdb->update($table,$data,$where,$format);
 		}
 	}
 }
