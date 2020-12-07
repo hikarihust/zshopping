@@ -26,8 +26,30 @@ class Zendvn_Sp_AdminManufacturer_Controller{
 
 	public function display(){
 		global $zController;
+
+		if($zController->getParams('action') == -1){
+			$url = $this->createUrl();
+			wp_redirect($url);
+		}
 		
 		$zController->getView('/manufacturer/display.php','/backend');
+	}
+
+	public function createUrl(){
+		global $zController;
+		
+		$url = 'admin.php?page=' . $zController->getParams('page');
+		
+		//filter_status
+		if($zController->getParams('filter_status') !== '0'){
+			$url .= '&filter_status=' . $zController->getParams('filter_status');
+		}
+		
+		if(mb_strlen($zController->getParams('s'))){
+			$url .= '&s=' . $zController->getParams('s');
+		}
+		
+		return $url;
 	}
 
 	public function add() {
