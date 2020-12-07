@@ -101,4 +101,6 @@ Xây dựng hệ thống quản lý manufacturer(Backend)
         wp_verify_nonce('_wpnonce');
     Delete item
     Filter
+Xây dựng hệ thống quản lý Category (Backend)
+    Category 1
     

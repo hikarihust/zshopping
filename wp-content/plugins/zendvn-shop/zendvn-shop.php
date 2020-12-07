@@ -23,10 +23,10 @@ if(is_admin()){
 	new Zendvn_Sp_Backend();
 
 	$zController->getHelper('AdminMenu');
+	$zController->getController('AdminCategory','/backend');
 } else {
 	require_once 'frontend.php';
 	new Zendvn_Sp_Frontend();
 }
 
 $zController->getController('AdminProduct','/backend');
-$zController->getController('AdminCategory','/backend');
