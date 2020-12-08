@@ -24,11 +24,37 @@ class Zendvn_Sp_AdminProduct_Controller{
 			add_action('manage_zsproduct_posts_custom_column', array($this,'display_value_column'),10,2);
 			add_filter('manage_edit-zsproduct_sortable_columns', array($this,'sortable_cols'));
 			add_action('pre_get_posts', array($this,'modify_query'));
+			add_action('restrict_manage_posts', array($this,'zs_category_list'));
 		}
 	}
 
+	public function zs_category_list(){
+		global $zController;
+		wp_dropdown_categories(array(
+			'show_option_all' => __("Show All ZS Category"),
+			'taxonomy'			=> 'zs_category',
+			'name'				=> 'zs_category',
+			'orderby'			=> 'name',
+			'selected'			=> $zController->getParams('zs_category'),
+			'hierarchical'		=> true,
+			'depth'				=> 3,
+			'show_count'		=> true,
+			'hide_empty'		=> true,
+		));
+	}
+
 	public function modify_query($query) {
+		global $zController;
+		if($zController->getParams('orderby') == ''){
+			$query->set('orderby','ID');
+			$query->set('order','DESC');
+		}
 		
+		$orderby = $query->get('orderby');
+		if($orderby == 'view'){
+			$query->set('meta_key',$this->create_key('view'));
+			$query->set('orderby','meta_value_num');
+		}
 	}
 
 	public function sortable_cols($columns){

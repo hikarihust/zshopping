@@ -126,4 +126,16 @@ Xây dựng hệ thống quản lý Product (Backend)
             Filters the list table sortable columns for a specific screen.
         do_action_ref_array( 'pre_get_posts', WP_Query $this )
             Fires after the query variable object is created, but before the actual query is run.
+    List items 3
+        Sắp xếp nếu giá trị của nó nằm trong meta table
+            meta_value_num -> number 
+            meta_value -> string
+            if($orderby == 'view'){
+                $query->set('meta_key',$this->create_key('view'));
+                $query->set('orderby','meta_value_num');
+            }
+        wp_dropdown_categories( array|string $args = '' )
+            Displays or retrieves the HTML dropdown list of categories.
+        do_action( 'restrict_manage_posts', string $post_type, string $which )
+            Fires before the Filter button on the Posts and Pages list tables.
     
