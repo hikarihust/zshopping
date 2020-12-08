@@ -145,4 +145,5 @@ Xây dựng hệ thống quản lý Product (Backend)
             『"Console.Write(value)"』の「"Write"」
 Shopping Settings (Backend)
     Shopping Settings 1
+    Shopping Settings 2
     
