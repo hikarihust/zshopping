@@ -14,6 +14,7 @@ class Zendvn_Sp_AdminProduct_Controller{
 			add_action('add_meta_boxes', array($this,'display'));
 
 			add_action('admin_enqueue_scripts', array($this,'add_css_file'));
+			add_action('admin_enqueue_scripts', array($this,'media_button_js_file'));
 		}
 	}
 
@@ -25,6 +26,15 @@ class Zendvn_Sp_AdminProduct_Controller{
 		global $zController;
 		$zController->_data['controller'] = $this;
 		$zController->getView('product/product_images.php','/backend');
+	}
+
+	public function media_button_js_file(){
+		global $zController;
+		
+		wp_enqueue_media();
+		wp_register_script('zendvn_sp_product_media_button', $zController->getJsUrl('media_button.js'),
+							array('jquery'),'1.0',true);
+		wp_enqueue_script('zendvn_sp_product_media_button');							
 	}
 
 	public function add_css_file(){

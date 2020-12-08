@@ -13,6 +13,28 @@ $arr 		= array('class' =>'button-secondary','id' => $inputID);
 $options	= array('type'=>'button');
 echo $btnMedia	= $htmlObj->pTag($htmlObj->button($inputName,$inputValue,$arr,$options));
 
+?>
+<div id="zendvn-sp-zsproduct-show-images">
+	<div class="content-img">
+		<img
+			src="http://zshopping.xyz/wp-content/uploads/2020/12/baby-28-150x150.jpg"
+			height="100" width="100">
+		<div>
+			<a class="remove-img">Remove</a>
+		</div>
+		<div class="div-ordering">
+			<input value="1" class="ordering"
+                name="zendvn-sp-zsproduct-img-ordering[]" type="text"> 
+            <input
+				name="zendvn-sp-zsproduct-img-url[]"
+				value="http://zshopping.xyz/wp-content/uploads/2020/12/baby-28-150x150.jpg"
+				type="hidden">
+		</div>
+	</div>
+	<div class="clr"></div>
+</div>
+<?php 
+
 //=====================================================
 //Tao phan tu chua rotate360
 //=====================================================
