@@ -143,4 +143,6 @@ Xây dựng hệ thống quản lý Product (Backend)
         (?: subexpression )	非キャプチャ グループを定義します。	
             Write(?:Line)?	『"Console.WriteLine()"』の「"WriteLine"」
             『"Console.Write(value)"』の「"Write"」
+Shopping Settings (Backend)
+    Shopping Settings 1
     

@@ -11,10 +11,20 @@ class Zendvn_Sp_Backend{
 		if($this->_page == 'zendvn-sp-manager-manufacturer'){
 			add_action('admin_init', array($this,'do_output_buffer'));
 		}
+
+		add_action('admin_enqueue_scripts', array($this,'add_css_file'));
 	}
 	
 	public function do_output_buffer(){
 		ob_start();
+	}
+
+	public function add_css_file(){
+		global $zController;
+		if($zController->getParams('page') == 'zendvn-sp-manager-settings'){
+			wp_register_style('zendvn_sp_product_setting_be', $zController->getCssUrl('setting-be.css'), array(),'1.0');
+			wp_enqueue_style('zendvn_sp_product_setting_be');
+		}
 	}
 
 	public function menus(){
@@ -70,7 +80,6 @@ class Zendvn_Sp_Backend{
 
 		if($page == 'zendvn-sp-manager-settings'){
 			$obj = $zController->getController('AdminSetting','/backend');
-			$obj->display();
 		}
     }
 }
