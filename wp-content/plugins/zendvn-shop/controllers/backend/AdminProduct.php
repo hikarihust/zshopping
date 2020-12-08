@@ -55,6 +55,16 @@ class Zendvn_Sp_AdminProduct_Controller{
 			$query->set('meta_key',$this->create_key('view'));
 			$query->set('orderby','meta_value_num');
 		}
+		if($zController->getParams('zs_category') > 0){
+			$tax_query = array(
+						'relation' => 'OR',
+						array(
+								'taxonomy' => 'zs_category',
+								'field'		=> 'term_id',
+								'terms'		=> $zController->getParams('zs_category'),
+							));
+			$query->set('tax_query',$tax_query);
+		}
 	}
 
 	public function sortable_cols($columns){

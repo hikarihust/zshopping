@@ -138,4 +138,5 @@ Xây dựng hệ thống quản lý Product (Backend)
             Displays or retrieves the HTML dropdown list of categories.
         do_action( 'restrict_manage_posts', string $post_type, string $which )
             Fires before the Filter button on the Posts and Pages list tables.
+    List items 4
     
