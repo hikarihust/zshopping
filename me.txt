@@ -139,4 +139,8 @@ Xây dựng hệ thống quản lý Product (Backend)
         do_action( 'restrict_manage_posts', string $post_type, string $which )
             Fires before the Filter button on the Posts and Pages list tables.
     List items 4
+    List items 5
+        (?: subexpression )	非キャプチャ グループを定義します。	
+            Write(?:Line)?	『"Console.WriteLine()"』の「"WriteLine"」
+            『"Console.Write(value)"』の「"Write"」
     

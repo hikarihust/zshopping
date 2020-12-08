@@ -8,23 +8,30 @@ class Zendvn_Sp_AdminProduct_Controller{
 		global $zController;
 		$model = $zController->getModel('Product');
 		add_action('init', array($model,'create'));
+
+		preg_match('#(?:.+\/)(.+)#', $_SERVER['SCRIPT_NAME'],$matches);
+		$phpFile = $matches[1];
+
 		add_filter( 'post_updated_messages', array($model,'zsproduct_updated_messages'));
 		add_filter( 'bulk_post_updated_messages', array($model,'filter_bulk_zsproduct_updated_messages'), 10, 2  ); 
 		if($zController->getParams('post_type') === 'zsproduct') {
-			add_action('add_meta_boxes', array($this,'display'));
-
 			add_action('admin_enqueue_scripts', array($this,'add_css_file'));
-			add_action('admin_enqueue_scripts', array($this,'media_button_js_file'));
-
-			if($zController->isPost()){
-				add_action('save_post', array($this,'save'));
+			
+			if($phpFile == 'post.php' || $phpFile == 'post-new.php') {
+				add_action('add_meta_boxes', array($this,'display'));
+				add_action('admin_enqueue_scripts', array($this,'media_button_js_file'));
+				if($zController->isPost()){
+					add_action('save_post', array($this,'save'));
+				}
 			}
 
-			add_filter('manage_posts_columns', array($this,'add_column'));
-			add_action('manage_zsproduct_posts_custom_column', array($this,'display_value_column'),10,2);
-			add_filter('manage_edit-zsproduct_sortable_columns', array($this,'sortable_cols'));
-			add_action('pre_get_posts', array($this,'modify_query'));
-			add_action('restrict_manage_posts', array($this,'zs_category_list'));
+			if($phpFile == 'edit.php') {
+				add_filter('manage_posts_columns', array($this,'add_column'));
+				add_action('manage_zsproduct_posts_custom_column', array($this,'display_value_column'),10,2);
+				add_filter('manage_edit-zsproduct_sortable_columns', array($this,'sortable_cols'));
+				add_action('pre_get_posts', array($this,'modify_query'));
+				add_action('restrict_manage_posts', array($this,'zs_category_list'));
+			}
 		}
 	}
 
