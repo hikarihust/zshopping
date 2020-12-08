@@ -2,6 +2,7 @@ jQuery(function($){
 	$(document).ready(function(){
         $('#zendvn-sp-zsproduct-button').click(open_media_window);
         zendvn_sp_remove_image('#zendvn-sp-zsproduct-show-images');
+        display('#zendvn-sp-zsproduct-show-images');
     });	
     
 	function open_media_window(e){
@@ -18,11 +19,21 @@ jQuery(function($){
                 var imgs = self.window.state().get('selection').toJSON();
 
                 zendvn_sp_insert_image('#zendvn-sp-zsproduct-show-images', imgs);
+                display('#zendvn-sp-zsproduct-show-images');
                 zendvn_sp_remove_image('#zendvn-sp-zsproduct-show-images');
 			});	
 		}
         this.window.open();
 		return false;
+    }
+
+    function display(img_content) {
+        number = $(img_content).find("*").length;
+        if(number > 1) {
+            $(img_content).show();
+        } else {
+            $(img_content).hide();
+        }
     }
     
 	function zendvn_sp_remove_image(img_content){
@@ -31,9 +42,10 @@ jQuery(function($){
 			var elemt;
 			elemt = $(this).parents("div.content-img");
 			$(elemt).fadeOut('slow',function(){
-				$(this).remove();
-			});
-		});
+                $(this).remove();
+                display('#zendvn-sp-zsproduct-show-images');
+            });
+        });
     }
     
 	//zendvn-sp-zsproduct-show-images

@@ -16,14 +16,33 @@ class Zendvn_Sp_AdminProduct_Controller{
 			add_action('admin_enqueue_scripts', array($this,'add_css_file'));
 			add_action('admin_enqueue_scripts', array($this,'media_button_js_file'));
 		}
+
+		if($zController->isPost()){
+			add_action('save_post', array($this,'save'));
+		}
 	}
 
 	public function display(){
 		add_meta_box($this->_meta_box_id, 'Images of product', array($this,'product_images'),'zsproduct');
+		add_meta_box($this->_meta_box_id .'-detail', 'Detail product', array($this,'detail_product'),'zsproduct');
+	}
+
+	public function save($post_id) {
+		global $zController;
+	}
+
+	public  function detail_product(){
+		global $zController;
+		wp_nonce_field($this->_meta_box_id,$this->_meta_box_id . '-nonce');
+	
+		$zController->_data['controller'] = $this;
+		$zController->getView('product/detail_product.php','/backend');
 	}
 
 	public function product_images(){
 		global $zController;
+		wp_nonce_field($this->_meta_box_id,$this->_meta_box_id . '-nonce');
+
 		$zController->_data['controller'] = $this;
 		$zController->getView('product/product_images.php','/backend');
 	}

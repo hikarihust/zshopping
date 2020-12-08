@@ -230,12 +230,22 @@ class Zendvn_Sp_Manufacturer_Model extends WP_List_Table {
 
 	public function getItem($arrData = array(), $options = array()){
 		global $wpdb;
-		
-		$id = absint($arrData['id']);
 		$table = $wpdb->prefix . 'zendvn_sp_manufacturer';
-		$sql = "SELECT * FROM $table WHERE id = $id";
-		$row = $wpdb->get_row($sql, ARRAY_A);
-		return $row;
+
+		if(isset($options['type']) && $options['type'] == 'all') {
+			$status = isset($arrData['status']) ? absint($arrData['status']) : 'all';
+			$sql = "SELECT * FROM $table";
+			if($status != 'all'){
+				$sql .= " WHERE status = $status ORDER BY name ASC ";
+			}
+			$result = $wpdb->get_results($sql,ARRAY_A);
+		} else {
+			$id = absint($arrData['id']);
+			$sql = "SELECT * FROM $table WHERE id = $id";
+			$result = $wpdb->get_row($sql, ARRAY_A);
+		}
+		
+		return $result;
 	}
 
 	public function save_item($arrData = array(), $options = array()) {
