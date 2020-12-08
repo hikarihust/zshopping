@@ -1,7 +1,7 @@
 jQuery(function($){
 	$(document).ready(function(){
         $('#zendvn-sp-zsproduct-button').click(open_media_window);
-	
+        zendvn_sp_remove_image('#zendvn-sp-zsproduct-show-images');
     });	
     
 	function open_media_window(e){
@@ -18,10 +18,22 @@ jQuery(function($){
                 var imgs = self.window.state().get('selection').toJSON();
 
                 zendvn_sp_insert_image('#zendvn-sp-zsproduct-show-images', imgs);
+                zendvn_sp_remove_image('#zendvn-sp-zsproduct-show-images');
 			});	
 		}
         this.window.open();
 		return false;
+    }
+    
+	function zendvn_sp_remove_image(img_content){
+		$(img_content + ' a.remove-img').on("click", function(){
+			
+			var elemt;
+			elemt = $(this).parents("div.content-img");
+			$(elemt).fadeOut('slow',function(){
+				$(this).remove();
+			});
+		});
     }
     
 	//zendvn-sp-zsproduct-show-images
