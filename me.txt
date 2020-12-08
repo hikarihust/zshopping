@@ -114,4 +114,9 @@ Xây dựng hệ thống quản lý Product (Backend)
     Add & Edit 6
     Add & Edit 7
     Add & Edit 8
+    List items 1
+        apply_filters( 'manage_posts_columns', string[] $post_columns, string $post_type )
+            Filters the columns displayed in the Posts list table.
+        do_action( "manage_{$post->post_type}_posts_custom_column", string $column_name, int $post_id )
+            Fires for each custom column of a specific post type in the Posts list table.
     

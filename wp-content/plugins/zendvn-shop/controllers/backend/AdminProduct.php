@@ -19,7 +19,44 @@ class Zendvn_Sp_AdminProduct_Controller{
 			if($zController->isPost()){
 				add_action('save_post', array($this,'save'));
 			}
+
+			add_filter('manage_posts_columns', array($this,'add_column'));
+			add_action('manage_zsproduct_posts_custom_column', array($this,'display_value_column'),10,2);
 		}
+	}
+
+	public function display_value_column($column,$post_id){
+		switch ( $column ) {
+			case 'id'         :
+				echo $post_id;
+				break;
+			case 'view'       :
+				$view  = get_post_meta($post_id, $this->create_key('view'),true);
+				if($view == null){
+					update_post_meta($post_id, $this->create_key('view'), 0);
+					echo '0';
+				}else{
+					echo $view;
+				}
+				break;
+		}
+	}
+
+	public function add_column($columns){
+		$newArr = array();
+		foreach ($columns as $key => $title){
+			$newArr[$key] = $title;
+			if($key == 'author'){
+				$newArr['category'] = __('Category');
+			}
+		}
+		
+		$new_columns = array(
+					'view'=> __('View'),
+					'id' => __('ID')
+				);
+		$newArr = array_merge($newArr,$new_columns);
+		return $newArr;
 	}
 
 	public function display(){
