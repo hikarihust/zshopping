@@ -15,10 +15,10 @@ class Zendvn_Sp_AdminProduct_Controller{
 
 			add_action('admin_enqueue_scripts', array($this,'add_css_file'));
 			add_action('admin_enqueue_scripts', array($this,'media_button_js_file'));
-		}
 
-		if($zController->isPost()){
-			add_action('save_post', array($this,'save'));
+			if($zController->isPost()){
+				add_action('save_post', array($this,'save'));
+			}
 		}
 	}
 
@@ -29,6 +29,33 @@ class Zendvn_Sp_AdminProduct_Controller{
 
 	public function save($post_id) {
 		global $zController;
+
+		$arrParam = $zController->getParams();
+		$wpnonce_name = $this->_meta_box_id . '-nonce';
+		$wpnonce_action = $this->_meta_box_id;
+
+		//zendvn-sp-zsproduct-nonce
+		if(!isset($arrParam[$wpnonce_name])) return $post_id;
+		
+		if(!wp_verify_nonce($arrParam[$wpnonce_name],$wpnonce_action)) return $post_id;
+		
+		if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return $post_id;
+
+		if(!current_user_can('edit_post')) return $post_id;
+
+		$arrData =  array(
+					'img-ordering' 	=> array_map('absint',$arrParam[$this->create_id('img-ordering')]),
+					'img-url' 		=> $arrParam[$this->create_id('img-url')],
+					'rotate360' 	=> esc_textarea($arrParam[$this->create_id('rotate360')]),
+					'price' 		=> filter_var($arrParam[$this->create_id('price')],FILTER_VALIDATE_FLOAT),
+					'sale-off' 		=> filter_var($arrParam[$this->create_id('sale-off')],FILTER_VALIDATE_FLOAT),
+					'manufacturer' 	=> absint($arrParam[$this->create_id('manufacturer')]),
+					'gift' 			=> esc_textarea($arrParam[$this->create_id('gift')]),
+				);
+
+		foreach ($arrData as $key => $val){
+			update_post_meta($post_id, $this->create_key($key), $val);
+		}
 	}
 
 	public  function detail_product(){
