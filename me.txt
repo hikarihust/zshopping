@@ -119,4 +119,11 @@ Xây dựng hệ thống quản lý Product (Backend)
             Filters the columns displayed in the Posts list table.
         do_action( "manage_{$post->post_type}_posts_custom_column", string $column_name, int $post_id )
             Fires for each custom column of a specific post type in the Posts list table.
+    List items 2
+        get_the_term_list( int $post_id, string $taxonomy, string $before = '', string $sep = '', string $after = '' )
+            Retrieves a post’s terms as a list with specified format.
+        apply_filters( "manage_{$this->screen->id}_sortable_columns", array $sortable_columns )
+            Filters the list table sortable columns for a specific screen.
+        do_action_ref_array( 'pre_get_posts', WP_Query $this )
+            Fires after the query variable object is created, but before the actual query is run.
     

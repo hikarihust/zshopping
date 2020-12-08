@@ -22,7 +22,19 @@ class Zendvn_Sp_AdminProduct_Controller{
 
 			add_filter('manage_posts_columns', array($this,'add_column'));
 			add_action('manage_zsproduct_posts_custom_column', array($this,'display_value_column'),10,2);
+			add_filter('manage_edit-zsproduct_sortable_columns', array($this,'sortable_cols'));
+			add_action('pre_get_posts', array($this,'modify_query'));
 		}
+	}
+
+	public function modify_query($query) {
+		
+	}
+
+	public function sortable_cols($columns){
+		$columns['id'] 		= 'ID';
+		$columns['view'] 	= 'view';
+		return $columns;
 	}
 
 	public function display_value_column($column,$post_id){
@@ -30,6 +42,7 @@ class Zendvn_Sp_AdminProduct_Controller{
 			case 'id'         :
 				echo $post_id;
 				break;
+
 			case 'view'       :
 				$view  = get_post_meta($post_id, $this->create_key('view'),true);
 				if($view == null){
@@ -38,6 +51,10 @@ class Zendvn_Sp_AdminProduct_Controller{
 				}else{
 					echo $view;
 				}
+				break;
+
+			case 'category'   :
+				echo get_the_term_list($post_id, 'zs_category','', ', ');
 				break;
 		}
 	}

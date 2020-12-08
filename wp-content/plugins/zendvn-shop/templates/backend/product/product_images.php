@@ -12,8 +12,8 @@ $inputValue = translate('Media Library Image');
 $arr 		= array('class' =>'button-secondary','id' => $inputID);
 $options	= array('type'=>'button');
 echo $btnMedia	= $htmlObj->pTag($htmlObj->button($inputName,$inputValue,$arr,$options));
-$arrOrdering = get_post_meta($post->ID, $controller->create_key('img-ordering'),true);
-$arrPicture = get_post_meta($post->ID, $controller->create_key('img-url'),true);
+$arrOrdering = get_post_meta($post->ID, $controller->create_key('img-ordering'),true) ? get_post_meta($post->ID, $controller->create_key('img-ordering'),true) : array();
+$arrPicture = get_post_meta($post->ID, $controller->create_key('img-url'),true) ? get_post_meta($post->ID, $controller->create_key('img-url'),true) : array();
 ?>
 <div id="zendvn-sp-zsproduct-show-images">
 <?php 
