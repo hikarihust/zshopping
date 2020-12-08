@@ -52,6 +52,9 @@ class Zendvn_Sp_AdminProduct_Controller{
 					'manufacturer' 	=> absint($arrParam[$this->create_id('manufacturer')]),
 					'gift' 			=> esc_textarea($arrParam[$this->create_id('gift')]),
 				);
+		if(!isset($arrParam['save'])){
+			$arrData['view'] = 0;
+		}
 
 		foreach ($arrData as $key => $val){
 			update_post_meta($post_id, $this->create_key($key), $val);

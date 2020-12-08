@@ -1,5 +1,5 @@
 <?php
-global $zController;
+global $zController, $post;
 $controller = $zController->_data['controller'];
 
 $htmlObj = new ZendvnHtml();
@@ -12,10 +12,35 @@ $inputValue = translate('Media Library Image');
 $arr 		= array('class' =>'button-secondary','id' => $inputID);
 $options	= array('type'=>'button');
 echo $btnMedia	= $htmlObj->pTag($htmlObj->button($inputName,$inputValue,$arr,$options));
-
+$arrOrdering = get_post_meta($post->ID, $controller->create_key('img-ordering'),true);
+$arrPicture = get_post_meta($post->ID, $controller->create_key('img-url'),true);
 ?>
 <div id="zendvn-sp-zsproduct-show-images">
+<?php 
+	if(count($arrPicture) > 0){
+		for($i=0; $i<count($arrPicture); $i++){
+			?>
+	<div class="content-img">
+		<img
+			src="<?php echo $arrPicture[$i];?>"
+			height="100" width="100">
+		<div>
+			<a class="remove-img">Remove</a>
+		</div>
+		<div class="div-ordering">
+			<input value="<?php echo $arrOrdering[$i];?>" class="ordering"
+                name="zendvn-sp-zsproduct-img-ordering[]" type="text"> 
+            <input
+				name="zendvn-sp-zsproduct-img-url[]"
+				value="<?php echo $arrPicture[$i];?>"
+				type="hidden">
+		</div>
+	</div>
+	<?php 
+		}
+	}
 
+	?>
 	<div class="clr"></div>
 </div>
 <?php 

@@ -40,7 +40,7 @@ class Zendvn_Sp_Product_Model{
 			//'can_export'           => true,
 			//'delete_with_user'     => null,
 			//'_builtin'             => false,
-			'_edit_link'           => 'post.php?post=%d',
+			'_edit_link'           => 'post.php?&post_type=zsproduct&post=%d',
 		);
 		register_post_type('zsproduct',$args);
 		// flush_rewrite_rules(false);
