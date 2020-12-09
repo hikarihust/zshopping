@@ -24,7 +24,7 @@
 								foreach ($zs_category as $key => $val){
 									$link = 'edit-tags.php?action=edit&taxonomy=zs_category
 												&tag_ID=' . $val->term_id . '&post_type=zsproduct';
-									echo '<li class="page-count"><a href="' . $link . '">' 
+									echo '<li class=""><a href="' . $link . '">' 
 										 . $i . ' - ' . $val->name . '</a></li>';
 						
 									$i++;

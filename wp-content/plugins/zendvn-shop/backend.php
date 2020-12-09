@@ -6,6 +6,7 @@ class Zendvn_Sp_Backend{
 	private $_page = '';
 
     public function __construct() {
+		global $zController;
 		if(isset($_GET['page'])) $this->_page = $_GET['page'];
 		add_action('admin_menu', array($this,'menus'));
 		if($this->_page == 'zendvn-sp-manager-manufacturer' || $this->_page == 'zendvn-sp-manager-settings'){
@@ -13,6 +14,7 @@ class Zendvn_Sp_Backend{
 		}
 
 		add_action('admin_enqueue_scripts', array($this,'add_css_file'));
+		$zController->getHelper('CreatePage');
 	}
 	
 	public function do_output_buffer(){

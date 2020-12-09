@@ -152,4 +152,7 @@ Shopping Dashboard (Backend)
     Shopping Dashboard 2
 Hiển thị sản phẩm (FrontEnd)
     Modify & Page Template 1
+    Modify & Page Template 2
+        apply_filters( 'page_attributes_dropdown_pages_args', array $dropdown_args, WP_Post $post )
+            Filters the arguments used to generate a Pages drop-down element.
     
