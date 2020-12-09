@@ -1,3 +1,14 @@
+<?php 
+    $args = array(
+				'hide_empty' 		=> false,
+				'number' 			=> 8,
+				'orderby' 			=>'id',
+				'order' 			=> 'DESC',
+				'hierarchical'		=> false
+			);
+
+    $zs_category = get_terms('zs_category', $args);
+?>
 <div id="normal-sortables" class="meta-box-sortables ui-sortable">
     <div id="dashboard_right_now" class="postbox ">
         <div class="postbox-header">
@@ -7,14 +18,24 @@
         <div class="inside">
             <div class="main">
                 <ul>
-                    <li class="post-count"><a href="edit.php?post_type=post">1 Post</a></li>
-                    <li class="page-count"><a href="edit.php?post_type=page">1 Page</a></li>
-                    <li class="comment-count"><a href="edit-comments.php">1 Comment</a></li>
-                    <li class="comment-mod-count
-		 hidden		"><a href="edit-comments.php?comment_status=moderated" class="comments-in-moderation-text">0 Comments in moderation</a></li>
+                    <?php 
+						 $i = 1;
+							if(count($zs_category)>0){
+								foreach ($zs_category as $key => $val){
+									$link = 'edit-tags.php?action=edit&taxonomy=zs_category
+												&tag_ID=' . $val->term_id . '&post_type=zsproduct';
+									echo '<li class="page-count"><a href="' . $link . '">' 
+										 . $i . ' - ' . $val->name . '</a></li>';
+						
+									$i++;
+								}
+							}
+					?>
                 </ul>
-                <p id="wp-version-message"><a href="http://zshopping.xyz/wp-admin/update-core.php" class="button" aria-describedby="wp-version">Update to 5.6</a> <span id="wp-version">WordPress 5.5.3 running <a href="themes.php">Twenty Ten</a> theme.</span></p>
-                <p class="search-engines-info"><a href="options-reading.php">Search engines discouraged</a></p>
+				<p id="wp-version-message">
+					<span id="wp-version">View all products <a href="edit-tags.php?taxonomy=zs_category&post_type=zsproduct">click here</a>.
+					</span>
+				</p>
             </div>
         </div>
     </div>

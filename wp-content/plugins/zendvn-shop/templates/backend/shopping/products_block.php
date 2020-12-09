@@ -1,3 +1,12 @@
+<?php 
+	$args = array(
+				'post_type' 		=> 'zsproduct',
+				'posts_per_page' 	=> 8,
+				'orderby' 			=>'date',
+				'order' 			=> 'DESC'
+			);
+	$the_query = new WP_Query($args);
+?>
 <div id="normal-sortables" class="meta-box-sortables ui-sortable">
     <div id="dashboard_right_now" class="postbox ">
         <div class="postbox-header">
@@ -7,14 +16,23 @@
         <div class="inside">
             <div class="main">
                 <ul>
-                    <li class="post-count"><a href="edit.php?post_type=post">1 Post</a></li>
-                    <li class="page-count"><a href="edit.php?post_type=page">1 Page</a></li>
-                    <li class="comment-count"><a href="edit-comments.php">1 Comment</a></li>
-                    <li class="comment-mod-count
-		 hidden		"><a href="edit-comments.php?comment_status=moderated" class="comments-in-moderation-text">0 Comments in moderation</a></li>
+                    <?php 
+						$i = 1;
+						if($the_query->have_posts()){
+							while ($the_query->have_posts()){
+								$the_query->the_post();
+								$link = 'post.php?post_type=zsproduct&post=' . get_the_ID() . '&action=edit';
+								echo '<li class="page-count"><a href="' . $link . '">' 
+									 . $i . ' - ' . get_the_title() . '</a></li>';
+								$i++;
+							}//$the_query->have_posts()
+						}
+						wp_reset_postdata();
+					?>
                 </ul>
-                <p id="wp-version-message"><a href="http://zshopping.xyz/wp-admin/update-core.php" class="button" aria-describedby="wp-version">Update to 5.6</a> <span id="wp-version">WordPress 5.5.3 running <a href="themes.php">Twenty Ten</a> theme.</span></p>
-                <p class="search-engines-info"><a href="options-reading.php">Search engines discouraged</a></p>
+                <p id="wp-version-message"> 
+                    <span id="wp-version">View all products <a href="edit.php?post_type=zsproduct">click here</a>.</span>
+                </p>
             </div>
         </div>
     </div>
