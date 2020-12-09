@@ -150,4 +150,6 @@ Shopping Settings (Backend)
 Shopping Dashboard (Backend)
     Shopping Dashboard 1
     Shopping Dashboard 2
+Hiển thị sản phẩm (FrontEnd)
+    Modify & Page Template 1
     
