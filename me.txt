@@ -147,4 +147,6 @@ Shopping Settings (Backend)
     Shopping Settings 1
     Shopping Settings 2
     Shopping Settings 3
+Shopping Dashboard (Backend)
+    Shopping Dashboard 1
     
