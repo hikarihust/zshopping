@@ -22,6 +22,20 @@ class zController {
 			return $val;
 		}
 	}
+
+	public function getConfig($filename = '', $dir = ''){
+	
+		$obj = new stdClass();
+	
+		$file =  ZENDVN_SP_CONFIG_PATH . $dir . DS . $filename . '.php';
+	
+		if(file_exists($file)){
+			require_once $file;
+			$controllerName = ZENDVN_SP_PREFIX . $filename . '_Config';
+			$obj = new $controllerName ();
+		}
+		return $obj;
+	}
     
 	public function getController($filename = '', $dir = ''){
 		

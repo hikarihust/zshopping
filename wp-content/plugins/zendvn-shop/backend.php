@@ -8,7 +8,7 @@ class Zendvn_Sp_Backend{
     public function __construct() {
 		if(isset($_GET['page'])) $this->_page = $_GET['page'];
 		add_action('admin_menu', array($this,'menus'));
-		if($this->_page == 'zendvn-sp-manager-manufacturer'){
+		if($this->_page == 'zendvn-sp-manager-manufacturer' || $this->_page == 'zendvn-sp-manager-settings'){
 			add_action('admin_init', array($this,'do_output_buffer'));
 		}
 

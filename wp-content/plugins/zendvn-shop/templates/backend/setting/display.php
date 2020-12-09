@@ -1,8 +1,15 @@
 <?php
+    global $zController;
+
     $lbl = __('ZShopping Settings');
     
     $option_name = 'zendvn_sp_setting';
-
+	if(!$zController->isPost()){
+		$data = get_option('zendvn_sp_setting',array());
+		if(count($data)==0){
+			$data = $zController->getConfig('Setting')->get();
+		}
+	}
 	//========================================
 	//TẠO CÁC PHẦN TỬ INPUT
 	//========================================
@@ -113,7 +120,7 @@
 			//Tao phan tu chua $emailAddress
 			$inputID 		= $option_name . '_email_address';
 			$inputName 		= $option_name . '[email_address]';
-			$inputValue 	= $data['email address'];
+			$inputValue 	= $data['email_address'];
 			$arr 			= array('size' =>'25','id' => $inputID);
 			$emailAddress	= $htmlObj->textbox($inputName,$inputValue,$arr);
 			
@@ -154,21 +161,22 @@
 			$options	= array('data' => array('no'=> 'No','yes'=>'Yes'),
 								'separator' => ' ');
 			$arr 		= array('size' =>'25','id' => $inputID);
-			$smtpAuth	= $htmlObj->radio($inputName,$inputValue,$arr,$options);
+            $smtpAuth	= $htmlObj->radio($inputName,$inputValue,$arr,$options);
+            
+			//Tao phan tu chua $smtpAuth
+			$inputID 	= $option_name . '_smtp_username';
+			$inputName 	= $option_name . '[smtp_username]';
+			$inputValue = $data['smtp_username'];
+            $arr 		= array('size' =>'25','id' => $inputID);
+            $smtpUsername	= $htmlObj->textbox($inputName,$inputValue,$arr);
 			
 			//Tao phan tu chua $smtpAuth
 			$inputID 	= $option_name . '_smtp_password';
 			$inputName 	= $option_name . '[smtp_password]';
 			$inputValue = $data['smtp_password'];
 			$arr 		= array('size' =>'25','id' => $inputID);
-			$smtpPassword	= $htmlObj->textbox($inputName,$inputValue,$arr);
+			$smtpPassword	= $htmlObj->password($inputName,$inputValue,$arr);
 			
-			//Tao phan tu chua $smtpAuth
-			$inputID 	= $option_name . '_smtp_username';
-			$inputName 	= $option_name . '[smtp_username]';
-			$inputValue = $data['smtp_username'];
-			$arr 		= array('size' =>'25','id' => $inputID);
-			$smtpUsername	= $htmlObj->password($inputName,$inputValue,$arr);
 		?>
 		<!--Send mail -->
 		<h3 class="title">
@@ -224,18 +232,18 @@
 						<label for="mailserver_url"><?php echo __('SMTP Authentication')?> : </label>
 					</th>
 					<td><?php echo $smtpAuth;?></td>
+                </tr>
+				<tr>
+					<th scope="row">
+						<label for="mailserver_url"><?php echo __('SMTP username')?> : </label>
+					</th>
+					<td><?php echo $smtpUsername;?></td>
 				</tr>
 				<tr>
 					<th scope="row">
 						<label for="mailserver_url"><?php echo __('SMTP password')?> : </label>
 					</th>
 					<td><?php echo $smtpPassword;?></td>
-				</tr>
-				<tr>
-					<th scope="row">
-						<label for="mailserver_url"><?php echo __('SMTP username')?> : </label>
-					</th>
-					<td><?php echo $smtpUsername;?></td>
 				</tr>
 			</tbody>
 		</table>
