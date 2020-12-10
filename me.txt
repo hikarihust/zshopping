@@ -162,4 +162,5 @@ Hiển thị sản phẩm (FrontEnd)
             Removes the cache contents matching key and group.
         https://stackoverflow.com/questions/19328475/adding-custom-page-template-from-plugin
         https://www.wpexplorer.com/wordpress-page-templates-plugin/
+    Show products 1
     
