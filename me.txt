@@ -155,4 +155,11 @@ Hiển thị sản phẩm (FrontEnd)
     Modify & Page Template 2
         apply_filters( 'page_attributes_dropdown_pages_args', array $dropdown_args, WP_Post $post )
             Filters the arguments used to generate a Pages drop-down element.
+    Modify & Page Template 3
+        apply_filters( 'wp_insert_post_data', array $data, array $postarr, array $unsanitized_postarr )
+            Filters slashed post data just before it is inserted into the database.
+        wp_cache_delete( int|string $key, string $group = '' )
+            Removes the cache contents matching key and group.
+        https://stackoverflow.com/questions/19328475/adding-custom-page-template-from-plugin
+        https://www.wpexplorer.com/wordpress-page-templates-plugin/
     

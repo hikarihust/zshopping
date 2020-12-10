@@ -31,7 +31,7 @@ class Zendvn_Sp_Product_Model{
 			'capability_type'      => 'post',
 			// 'capabilities'         => array(),
 			//'map_meta_cap'         => null,
-			'supports'             => array('title' ,'editor','author','custom-fields' ,'comments'),
+			'supports'             => array('title' ,'editor','author','custom-fields' ,'comments', 'thumbnail'),
 			//'register_meta_box_cb' => null,
 			'taxonomies'           => array('zs_category'),
 			'has_archive'          => true,
