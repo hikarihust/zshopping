@@ -176,4 +176,6 @@ Hiển thị sản phẩm (FrontEnd)
     Show products 6
         wp_get_attachment_image_src( int $attachment_id, string|int[] $size = 'thumbnail', bool $icon = false )
         Retrieves an image to represent an attachment.
+    Show products 7
+        http://zshopping.xyz/wp-content/uploads/2020/12/iPhone-6.jpg
     
