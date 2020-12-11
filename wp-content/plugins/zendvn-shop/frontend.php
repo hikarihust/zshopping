@@ -1,11 +1,21 @@
 <?php
 class Zendvn_Sp_Frontend{
-	
+	private $_cssFlag = false;
+
 	public function __construct(){
 		global $zController;
 		add_action('init', array($zController->getModel('Category'),'create'));
 		add_action('init', array($zController->getModel('Product'),'create'));
+		add_action('wp_enqueue_scripts', array($this,'add_css_file'));
 		add_filter('template_include', array($this,'load_template'));
+	}
+
+	public function add_css_file(){
+		if($this->_cssFlag == true){
+			global $zController;
+			wp_register_style('zendvn_sp_product_fe', $zController->getCssUrl('product_fe.css'), array(), '1.0');
+			wp_enqueue_style('zendvn_sp_product_fe');
+		}
 	}
 
 	public function load_template($templates) {
@@ -17,6 +27,7 @@ class Zendvn_Sp_Frontend{
 			
 			$file = ZENDVN_SP_TEMPLATE_PATH . DS . 'frontend' . DS . $page_template;
 			if(file_exists($file)){
+				$this->_cssFlag = true;
 				return $file;
 			}
 		}
@@ -24,6 +35,7 @@ class Zendvn_Sp_Frontend{
 		if(get_query_var('zs_category') != ''){
 			$file = ZENDVN_SP_TEMPLATE_PATH . DS . 'frontend' . DS . 'zs_category.php';
 			if(file_exists($file)){
+				$this->_cssFlag = true;
 				return $file;
 			}			
 		}
@@ -31,6 +43,7 @@ class Zendvn_Sp_Frontend{
 		if(get_query_var('zsproduct') != ''){	
 			$file = ZENDVN_SP_TEMPLATE_PATH . DS . 'frontend' . DS . 'zsproduct.php';
 			if(file_exists($file)){
+				$this->_cssFlag = true;
 				return $file;
 			}
 		}

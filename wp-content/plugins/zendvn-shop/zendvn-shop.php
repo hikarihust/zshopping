@@ -26,6 +26,13 @@ if(is_admin()){
 	$zController->getController('AdminProduct','/backend');
 	$zController->getController('AdminCategory','/backend');
 } else {
+	global $zendvn_sp_settings;
+
+	$zendvn_sp_settings = get_option('zendvn_sp_setting',array());
+	if(count($zendvn_sp_settings) == 0){
+		$zendvn_sp_settings = $zController->getConfig('Setting')->get();
+	}
+	
 	require_once 'frontend.php';
 	new Zendvn_Sp_Frontend();
 }
