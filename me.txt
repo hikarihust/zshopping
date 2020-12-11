@@ -187,4 +187,5 @@ Hiển thị sản phẩm (FrontEnd)
             Display or retrieve page title for category archive.
         category_description( int $category )
             Retrieves category description.
+    Detail Product 1
     
