@@ -1,5 +1,5 @@
 <?php 
-    global $zController, $zendvn_sp_settings, $wp_query;
+    global $zController, $zendvn_sp_settings, $wp_query, $wpQuery;
 ?>
 <?php if(have_posts()) while(have_posts()) : the_post();?>
 <h1 class="entry-title">
@@ -9,13 +9,23 @@
     <?php the_content();?>
     <?php 
         $productQuery = $zController->getModel('Product')->getAllProduct();
+        echo '<ul id="zendvn_sp_products">';
+        while ($productQuery->have_posts()){
+            $productQuery->the_post();
+            $postID = $productQuery->post->ID;
+            $tilte = get_the_title($postID);
+
+            $imgThumbnail = $zController->getHelper('ImgThumbnail');
+			$width = 160;
+			$height = 160;
+			$img = $imgThumbnail->getImage($postID,
+            				array('type'=>'resize','width'=> $width, 'height'=> $height));
     ?>
-    <ul id="zendvn_sp_products">
         <li>
 			<div class="product">
 				<a href="#"title="">
-					<img src="http://zshopping.xyz/wp-content/plugins/zendvn-shop/public/products/p160x160/Galaxy-A5.jpg" alt="" width="160px" height="160px">
-					<div class="name">iPhone 4</div>
+					<img src="<?php echo $img;?>" alt="" width="160px" height="160px">
+					<div class="name"><?php echo $tilte;?></div>
 				</a>
 				<div class="price">
 					<span class="plft" style="">USD</span>
@@ -24,7 +34,10 @@
 				<div class="gift clr">&nbsp;</div>
 			</div>
 		</li>
-    </ul>
+    <?php 
+        }
+		echo '</ul>';
+	?>
     <div class="clr"></div>
 </div>
 <?php endwhile;?>

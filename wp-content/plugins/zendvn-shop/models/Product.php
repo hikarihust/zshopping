@@ -7,7 +7,7 @@ class Zendvn_Sp_Product_Model{
 		$paged 	= max(1, get_query_var('paged'));
 		$offset = ($paged - 1) * $zendvn_sp_settings['product_number'];
 		$args = array(
-				'post_type'			=>'zaproduct',
+				'post_type'			=>'zsproduct',
 				'posts_per_page' 	=> $zendvn_sp_settings['product_number'],
 				'offset'			=> $offset,
 				'paged'				=> $paged,

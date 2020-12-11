@@ -173,4 +173,7 @@ Hiển thị sản phẩm (FrontEnd)
     Show products 3
     Show products 4
     Show products 5
+    Show products 6
+        wp_get_attachment_image_src( int $attachment_id, string|int[] $size = 'thumbnail', bool $icon = false )
+        Retrieves an image to represent an attachment.
     

@@ -20,4 +20,5 @@ define('ZENDVN_SP_TEMPLATE_PATH'		, ZENDVN_SP_PLUGIN_PATH . 'templates');
 define('ZENDVN_SP_VALIDATE_PATH'		, ZENDVN_SP_PLUGIN_PATH . 'validates');
 
 //====================ORTHER==========================
+define('ZENDVN_SP_PRODUCT_URL'		, ZENDVN_SP_PUBLIC_URL . '/products');
 define('ZENDVN_SP_PREFIX'			, 'Zendvn_Sp_');
