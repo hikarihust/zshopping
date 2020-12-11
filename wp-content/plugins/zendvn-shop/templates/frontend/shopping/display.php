@@ -9,6 +9,7 @@
     <?php the_content();?>
     <?php 
         $productQuery = $zController->getModel('Product')->getAllProduct();
+        $wpQuery = $productQuery;
         echo '<ul id="zendvn_sp_products">';
         while ($productQuery->have_posts()){
             $productQuery->the_post();
@@ -59,5 +60,7 @@
 </div>
 <?php endwhile;?>
 <?php 
-	$zController->getView('paging.php','/frontend');
+	if($wpQuery->max_num_pages > 1){
+		$zController->getView('paging.php','/frontend');
+	}
 ?>

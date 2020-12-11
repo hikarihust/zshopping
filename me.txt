@@ -181,4 +181,5 @@ Hiển thị sản phẩm (FrontEnd)
     Show products 8
         wp_get_image_editor( string $path, array $args = array() )
             Returns a WP_Image_Editor instance and loads file into it.
+    Paging class
     
