@@ -3,7 +3,10 @@ get_header(); ?>
 
 		<div id="container">
 			<div id="content" role="main">
-                <?php echo __FILE__; ?>
+				<?php 
+					global $zController;
+					$zController->getController('Category','/frontend');
+				?>
 			</div><!-- #content -->
 		</div><!-- #container -->
 
