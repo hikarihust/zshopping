@@ -10,11 +10,26 @@ class Zendvn_Sp_Frontend{
 
 	public function load_template($templates) {
 		global $post;
+		global $wp_query;
 
 		if(is_page() == 1){
 			$page_template = get_post_meta($post->ID,'_wp_page_template', true);
 			
 			$file = ZENDVN_SP_TEMPLATE_PATH . DS . 'frontend' . DS . $page_template;
+			if(file_exists($file)){
+				return $file;
+			}
+		}
+
+		if(get_query_var('zs_category') != ''){
+			$file = ZENDVN_SP_TEMPLATE_PATH . DS . 'frontend' . DS . 'zs_category.php';
+			if(file_exists($file)){
+				return $file;
+			}			
+		}
+		
+		if(get_query_var('zsproduct') != ''){	
+			$file = ZENDVN_SP_TEMPLATE_PATH . DS . 'frontend' . DS . 'zsproduct.php';
 			if(file_exists($file)){
 				return $file;
 			}
