@@ -29,3 +29,15 @@ if(is_admin()){
 	require_once 'frontend.php';
 	new Zendvn_Sp_Frontend();
 }
+
+//Add our custom template to the admin's templates dropdown
+add_filter( 'theme_page_templates', 'pluginname_template_as_option', 10, 3 );
+function pluginname_template_as_option( $page_templates, $theme, $post ){
+	$templatePage = array(
+		'page-zshopping.php' => 'Show all products',
+		'page-zcart.php' => 'ZShopping cart'
+	);	
+	$page_templates = array_merge($page_templates,$templatePage);
+
+    return $page_templates;
+}

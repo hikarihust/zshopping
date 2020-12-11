@@ -14,7 +14,7 @@ class Zendvn_Sp_Frontend{
 		if(is_page() == 1){
 			$page_template = get_post_meta($post->ID,'_wp_page_template', true);
 			
-			echo $file = ZENDVN_SP_TEMPLATE_PATH . DS . 'frontend' . DS . $page_template;
+			$file = ZENDVN_SP_TEMPLATE_PATH . DS . 'frontend' . DS . $page_template;
 			if(file_exists($file)){
 				return $file;
 			}
