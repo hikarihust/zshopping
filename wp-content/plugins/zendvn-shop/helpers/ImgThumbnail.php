@@ -46,7 +46,11 @@ class Zendvn_Sp_ImgThumbnail_Helper{
 		
 		$newImgPath = $storeFolder . '/' . $currentName;
 		if(!file_exists($newImgPath)){
-
+			$wpImageEditor = wp_get_image_editor($imgDir);
+			if(!is_wp_error($wpImageEditor)){
+				$wpImageEditor->resize($width, $height, array('center','center'));
+				$wpImageEditor->save($newImgPath);
+			}
 		}
 		$newImgUrl = ZENDVN_SP_PRODUCT_URL . '/p' . $width .'x' . $height . '/' . $currentName;
 		
