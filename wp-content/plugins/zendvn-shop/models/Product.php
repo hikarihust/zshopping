@@ -1,5 +1,21 @@
 <?php
 class Zendvn_Sp_Product_Model{
+
+	public function getAllProduct(){
+		global $zendvn_sp_settings;
+		
+		$paged 	= max(1, get_query_var('paged'));
+		$offset = ($paged - 1) * $zendvn_sp_settings['product_number'];
+		$args = array(
+				'post_type'			=>'zaproduct',
+				'posts_per_page' 	=> $zendvn_sp_settings['product_number'],
+				'offset'			=> $offset,
+				'paged'				=> $paged,
+		);
+		$productQuery = new WP_Query($args);
+		return $productQuery;
+	}
+
 	public function create() {
 		$labels = array(
 			'name' 				=> __('ZS Products'),

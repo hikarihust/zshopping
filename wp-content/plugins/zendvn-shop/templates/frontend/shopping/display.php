@@ -1,15 +1,15 @@
 <?php 
-    global $zController;
+    global $zController, $zendvn_sp_settings, $wp_query;
 ?>
+<?php if(have_posts()) while(have_posts()) : the_post();?>
 <h1 class="entry-title">
-	Shopping
+    <?php the_title();?>
 </h1>
 <div class="entry-content">
-    <p>
-        The Shopping Content Service allows you to use the Google Content API for Shopping in Apps Script. 
-        This API gives Google Merchant Center users the ability to upload and manage their product listings 
-        and manage their Merchant Center accounts.
-    </p>
+    <?php the_content();?>
+    <?php 
+        $productQuery = $zController->getModel('Product')->getAllProduct();
+    ?>
     <ul id="zendvn_sp_products">
         <li>
 			<div class="product">
@@ -27,6 +27,7 @@
     </ul>
     <div class="clr"></div>
 </div>
+<?php endwhile;?>
 <?php 
 	$zController->getView('paging.php','/frontend');
 ?>
