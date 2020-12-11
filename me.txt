@@ -182,4 +182,9 @@ Hiển thị sản phẩm (FrontEnd)
         wp_get_image_editor( string $path, array $args = array() )
             Returns a WP_Image_Editor instance and loads file into it.
     Paging class
+    Show Products in Category
+        single_cat_title( string $prefix = '', bool $display = true )
+            Display or retrieve page title for category archive.
+        category_description( int $category )
+            Retrieves category description.
     
