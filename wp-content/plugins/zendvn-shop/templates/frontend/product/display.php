@@ -70,7 +70,7 @@ $meta_key = '_zendvn_sp_zsproduct_';
 			<li class="gift">
 				<div>Gift: <?php echo $gift;?></div>
 			</li>
-			<li><a id="add_to_cart" class="order" product-id="<?php echo $post->ID;?>" href="<?php echo $linkAddCart; ?>">Đặt hàng</a></li>
+			<li><a id="add_to_cart" class="order" product-id="<?php echo $post->ID;?>">Đặt hàng</a></li>
 			<li><a href="#" class="r360">Xoay hình 360 độ</a>
 			</li>
 			<li class="detail-cart">

@@ -48,3 +48,5 @@ function pluginname_template_as_option( $page_templates, $theme, $post ){
 
     return $page_templates;
 }
+
+$zController->getController('Ajax','/frontend');
