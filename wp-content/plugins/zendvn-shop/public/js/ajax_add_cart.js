@@ -11,7 +11,9 @@ jQuery(document).ready(function($){
 			data		: dataObj,
 			dataType	: "text",
 			success		: function(data, status, jsXHR){
+                            $(".detail-cart span.number_product").text(data);
 
+                            $(".detail-cart .alert-cart").show('slow');
 						}
 		});
 	});

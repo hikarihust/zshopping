@@ -26,5 +26,40 @@ class Zendvn_Sp_Cart_Controller{
 	public function add_to_cart(){
 	
 		check_ajax_referer('ajax-security-code','security');
+		global $zController;
+
+		$id 	= (int)$zController->getParams('value');
+		if($id > 0){
+			$ss 	= $zController->getHelper('Session');
+			$ssCart = $ss->get('zcart',array());
+	
+			if(count($ssCart) == 0){
+				$ssCart[$id] = 1;
+			}else{
+				if(!isset($ssCart[$id])){
+					$ssCart[$id] = 1;
+				}else{
+					$ssCart[$id] = $ssCart[$id] + 1;
+				}
+			}
+	
+			$ss->set('zcart',$ssCart);
+		}
+
+		$ssCart = $ss->get('zcart',array());
+		$total_item = 0;
+		if(count($ssCart) > 0){
+			foreach ($ssCart as $key => $val){
+				$total_item += $val;
+			}
+		}
+	
+		$str_item = $total_item . ' product';
+		if($total_item > 1){
+			$str_item = $total_item . ' products';
+		}
+		echo $str_item;
+
+		wp_die();
 	}
 }

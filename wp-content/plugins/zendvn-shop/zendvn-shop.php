@@ -49,4 +49,12 @@ function pluginname_template_as_option( $page_templates, $theme, $post ){
     return $page_templates;
 }
 
+add_action('init','zendvn_sp_session_start',1);
+
+function zendvn_sp_session_start(){
+	if(!session_id()){
+		session_start();
+	}
+}
+
 $zController->getController('Ajax','/frontend');
