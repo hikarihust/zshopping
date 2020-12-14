@@ -52,7 +52,8 @@ $cartHTML .= '<table>
                     $quality = $ssCart[$postID];
 
                     $money = $price * $quality;
-
+                    $linkUpdate = '<a class="update-product" product-id="' . $postID . '" product-price="'. $price .'">update</a>';
+                    $linkRemove = '<a class="remove-product" product-id="' . $postID . '">remove</a>';
                     $cartHTML .= '<tr>
                                     <td>' . $postID . '</td>
                                     <td>' . $title . '</td>
@@ -62,7 +63,7 @@ $cartHTML .= '<table>
                                             value="' . $quality . '">
                                     </td>
                                     <td class="money-pay">' . $money . '</td>
-                                    <td class="control">update | remove</td>
+                                    <td class="control">' . $linkUpdate . ' | ' . $linkRemove . '</td>
                                 </tr>';
                 }
             }

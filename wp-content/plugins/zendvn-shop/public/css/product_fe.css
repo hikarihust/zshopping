@@ -162,3 +162,50 @@
 	color: red;
 	display: none;
 }
+
+/*---------------HIEN THI CÁC SẢN PHẨM TRONG GIỎ HÀNG ------------------------*/
+#zendvn_sp_cart_table {
+	
+}
+
+#zendvn_sp_cart_table .remove-product,.update-product {
+	cursor: pointer;
+	color: green;
+	text-decoration: underline;
+}
+
+#zendvn_sp_cart_table .show-alert {
+	height: 25px;
+	line-height: 25px;
+	margin-bottom: 7px;
+	padding: 0px 10px;
+}
+
+.cart-delete{
+	background-color: #FFC2B2;
+}
+
+.cart-update{
+	background-color: #bde0f1;
+}
+
+#total{
+	text-align: right;
+}
+
+
+/*---------------FORM THONG TIN KHACH HANG ------------------------*/
+#custom_infomation{
+	  margin-top: 10px;
+}
+
+#custom_infomation .custom_infomation_table{
+	
+}
+
+#custom_infomation .custom_infomation_table .label{
+	width: 30%;
+	font-weight: bold;
+	border-right: solid 1px #e7e7e7;
+	vertical-align: top;
+}

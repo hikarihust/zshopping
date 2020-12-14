@@ -12,6 +12,8 @@ class Zendvn_Sp_Cart_Controller{
 		
 		switch ($action){
 			case 'add_to_cart'	: $this->add_to_cart(); break;
+
+			case 'update_cart'	: $this->update_cart(); break;
 			
 			default: $this->display(); break;
 		}
@@ -21,6 +23,28 @@ class Zendvn_Sp_Cart_Controller{
 		global $zController;
 		
 		$zController->getView('cart/display.php','/frontend' );
+	}
+
+	public function update_cart(){
+	
+		check_ajax_referer('ajax-security-code','security');
+	
+		global $zController;
+	
+		$postID 	= $zController->getParams('value');
+		$quality 	= $zController->getParams('quality');
+		$price 		= $zController->getParams('price');
+	
+		if(absint($postID) > 0){
+			$ss 	= $zController->getHelper('Session');
+			$ssCart = $ss->get('zcart',array());
+			$ssCart[$postID] = $quality;
+				
+			$ss->set('zcart',$ssCart);
+		}
+		echo ($price * $quality);
+	
+		wp_die();
 	}
 
 	public function add_to_cart(){

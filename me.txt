@@ -200,4 +200,7 @@ Xây dựng hệ thống quản lý đơn đặt hàng
     Add Item by Ajax 3
     Edit & Delete Item 1
     Edit & Delete Item 2
+    Edit & Delete Item 3
+        do_action( "wp_ajax_nopriv_{$action}" )
+        Fires non-authenticated Ajax actions for logged-out users.
     
