@@ -52,6 +52,39 @@ jQuery(document).ready(function($){
 	});
 
 	//=============================================
+	// XOA SAN PHAM TRONG GIO HANG
+	//==============================================
+	$(".remove-product").on('click',function(){
+		var linkDelete  = this;
+		
+		var productID 	= $(this).attr('product-id');
+		var dataObj = {
+				"action"	: "delete_cart",
+				"value"		: productID,
+				"security"	: security_code
+			};
+		
+		$.ajax({
+			url			: ajaxurl,
+			type		: "POST",
+			data		: dataObj,
+			dataType	: "text",
+			success		: function(data, status, jsXHR){	
+							$(linkDelete).parents('tr').hide('800').queue(function(){
+								$(this).remove();
+								total();
+							});	
+				
+							$('#zendvn_sp_cart_table .show-alert').removeClass()
+																 .addClass('show-alert')
+																 .addClass('cart-delete')
+																 .html('Item updated');
+							
+						}
+		});
+	});
+
+	//=============================================
 	// TOTAL
 	//==============================================
 	total();
@@ -60,7 +93,7 @@ jQuery(document).ready(function($){
 		$("td.money-pay").each(function(index, obj){
 			total_pay = total_pay + parseInt($(obj).text());
 		});
-		
+		total_pay = accounting.formatMoney(total_pay, "$ ", 2, ".",",");
 		$("#total .pay").text(total_pay);
 	}
 });

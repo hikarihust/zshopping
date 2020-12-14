@@ -204,4 +204,5 @@ Xây dựng hệ thống quản lý đơn đặt hàng
         do_action( "wp_ajax_nopriv_{$action}" )
         Fires non-authenticated Ajax actions for logged-out users.
     Edit & Delete Item 4
+    Edit & Delete Item 5
     

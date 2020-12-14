@@ -70,7 +70,7 @@ $cartHTML .= '<table>
 $cartHTML .= '</tbody>
 	</table>
 	<div id="total">
-		<b>Total:</b> <span class="pay">$ 1223</span>
+		<b>Total:</b> <span class="pay"></span>
 	</div>';
 	echo $cartHTML;
 ?>

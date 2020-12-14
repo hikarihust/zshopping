@@ -8,9 +8,19 @@ class Zendvn_Sp_Ajax_Controller{
 
 		add_action('wp_ajax_update_cart',array($this,'update_cart'));
 		add_action('wp_ajax_nopriv_update_cart', array($this,'update_cart'));
+
+		add_action('wp_ajax_delete_cart',array($this,'delete_cart'));
+		add_action('wp_ajax_nopriv_delete_cart', array($this,'delete_cart'));
         
         add_action('wp_enqueue_scripts',array($this,'add_js_file'));
         add_action('wp_head',array($this,'add_ajax_library'));
+	}
+
+	public function delete_cart(){
+		global $zController;
+		$zController->getController('Cart','/frontend');
+		
+		wp_die();
 	}
 	
 	public function update_cart(){
@@ -35,6 +45,10 @@ class Zendvn_Sp_Ajax_Controller{
 			wp_register_script('zendvn_sp_ajax_add_cart', $zController->getJsUrl('ajax_add_cart.js'),
 			array('jquery'),'1.0',true);
 			wp_enqueue_script('zendvn_sp_ajax_add_cart');
+
+			wp_register_script('zendvn_sp_accounting', $zController->getJsUrl('accounting.min.js'),
+			array('jquery'),'1.0',true);
+			wp_enqueue_script('zendvn_sp_accounting');
 		}
     }
     
