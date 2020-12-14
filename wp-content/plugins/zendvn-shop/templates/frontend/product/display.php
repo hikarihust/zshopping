@@ -33,6 +33,9 @@ $meta_key = '_zendvn_sp_zsproduct_';
 	$firstImg = key($newPicArray);
 	
 	$linkAddCart = site_url('?zsproduct=' . get_query_var('zsproduct') . '&action=add_cart&id=' . $post->ID);
+
+	$pageID = $zController->getHelper('GetPageId')->get('_wp_page_template','page-zcart.php');
+	$linkDetailCart = get_permalink($pageID);
 ?>
 <div id="zendvn_sp_product_detail">
 	<div class="product_imgs">
@@ -92,7 +95,7 @@ $meta_key = '_zendvn_sp_zsproduct_';
 					cart
 				</div>
 				<div>
-					View details of your cart <a href="#">click here</a>
+					View details of your cart <a href="<?php echo $linkDetailCart;?>">click here</a>
 				</div>
 
 			</li>
