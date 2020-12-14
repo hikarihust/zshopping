@@ -30,7 +30,9 @@ $meta_key = '_zendvn_sp_zsproduct_';
 		$newPicArray[$val] = $arrOrdering[$key];
 	}
     asort($newPicArray);
-    $firstImg = key($newPicArray);
+	$firstImg = key($newPicArray);
+	
+	$linkAddCart = site_url('?zsproduct=' . get_query_var('zsproduct') . '&action=add_cart&id=' . $post->ID);
 ?>
 <div id="zendvn_sp_product_detail">
 	<div class="product_imgs">
@@ -65,7 +67,7 @@ $meta_key = '_zendvn_sp_zsproduct_';
 			<li class="gift">
 				<div>Gift: <?php echo $gift;?></div>
 			</li>
-			<li><a id="add_to_cart" class="order" product-id="259">Đặt hàng</a></li>
+			<li><a id="add_to_cart" class="order" product-id="<?php echo $post->ID;?>" href="<?php echo $linkAddCart; ?>">Đặt hàng</a></li>
 			<li><a href="#" class="r360">Xoay hình 360 độ</a>
 			</li>
 			<li class="detail-cart">
