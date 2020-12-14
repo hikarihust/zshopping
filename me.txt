@@ -205,4 +205,9 @@ Xây dựng hệ thống quản lý đơn đặt hàng
         Fires non-authenticated Ajax actions for logged-out users.
     Edit & Delete Item 4
     Edit & Delete Item 5
+    Edit & Delete Item 6
+        $(linkDelete).parents('tr').hide('800').queue(function(){
+            $(this).remove();
+            total();
+        });	
     
