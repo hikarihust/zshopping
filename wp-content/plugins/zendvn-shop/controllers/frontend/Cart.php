@@ -9,6 +9,11 @@ class Zendvn_Sp_Cart_Controller{
 		global $zController;
 		
 		$action = $zController->getParams('action');
+		$payment = $zController->getParams('payment');
+
+		if($action == '' && $payment !=''){
+			$action = $payment;
+		}
 		
 		switch ($action){
 			case 'add_to_cart'	: $this->add_to_cart(); break;
@@ -16,6 +21,8 @@ class Zendvn_Sp_Cart_Controller{
 			case 'update_cart'	: $this->update_cart(); break;
 
 			case 'delete_cart'	: $this->delete_cart(); break;
+
+			case 'paypal'		: $this->paypal(); break;
 			
 			default: $this->display(); break;
 		}
@@ -25,6 +32,11 @@ class Zendvn_Sp_Cart_Controller{
 		global $zController;
 		
 		$zController->getView('cart/display.php','/frontend' );
+		$zController->getView('cart/payment.php','/frontend' );
+	}
+
+	public function paypal(){
+		echo '<br/>' . __METHOD__;
 	}
 
 	public function delete_cart() {

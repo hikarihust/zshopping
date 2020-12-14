@@ -210,4 +210,5 @@ Xây dựng hệ thống quản lý đơn đặt hàng
             $(this).remove();
             total();
         });	
+    Phương thức thanh toán
     

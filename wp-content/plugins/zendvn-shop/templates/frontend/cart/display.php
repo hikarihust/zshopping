@@ -72,7 +72,16 @@ $cartHTML .= '</tbody>
 	<div id="total">
 		<b>Total:</b> <span class="pay"></span>
 	</div>';
-	echo $cartHTML;
+
+	if($zController->getParams('payment') != 'send_mail'){
+		echo $cartHTML;
+	}else{
+		$pattern = '#<td class="control">.*</td>#imU';
+		$cartHTML = preg_replace($pattern, $replacement, $cartHTML);
+		echo $cartHTML;
+		$ss = $zController->getHelper('Session');
+		$ss->set('zcart_mail',$cartHTML);
+	}
 ?>
 </div>
 <?php endwhile;?>
