@@ -23,3 +23,5 @@ define('ZENDVN_SP_VALIDATE_PATH'		, ZENDVN_SP_PLUGIN_PATH . 'validates');
 define('ZENDVN_SP_PRODUCT_URL'		, ZENDVN_SP_PUBLIC_URL . '/products');
 define('ZENDVN_SP_PRODUCT_PATH'		, ZENDVN_SP_PUBLIC_PATH . '/products');
 define('ZENDVN_SP_PREFIX'			, 'Zendvn_Sp_');
+define('ZENDVN_SP_PLUGIN_NAME'		, 'ZENDVN_SP');
+define('ZENDVN_SP_PLUGIN_VERSION'	, '1.0');

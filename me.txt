@@ -190,4 +190,6 @@ Hiển thị sản phẩm (FrontEnd)
     Detail Product 1
     Detail Product 2
     Detail Product 3
+Xây dựng hệ thống quản lý đơn đặt hàng  
+    Add Item 1
     

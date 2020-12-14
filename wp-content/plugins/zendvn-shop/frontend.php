@@ -9,7 +9,15 @@ class Zendvn_Sp_Frontend{
 		add_action('wp_enqueue_scripts', array($this,'add_css_file'));
 		add_action('wp_enqueue_scripts', array($this,'add_js_file'));
 		add_filter('template_include', array($this,'load_template'));
+
+		add_action('init', array($this,'session_start'),1);
 	}
+
+	public function session_start(){
+		if(!session_id()){
+			session_start();
+		}
+	} 
 
 	public function add_js_file(){
 		global $zController;
