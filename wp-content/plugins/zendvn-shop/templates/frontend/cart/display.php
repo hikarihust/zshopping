@@ -27,26 +27,45 @@ $cartHTML .= '<table>
 			</tr>
 		</thead>
 
-		<tbody>';
+        <tbody>';
+            $meta_key = '_zendvn_sp_zsproduct_';
             if(count($idArr)) {
                 $args = array(
-                    'post_type' => 'zaproduct',
+                    'post_type' => 'zsproduct',
                     'post__in'=> $idArr,
                 );
                 $wpQuery = new WP_Query($args);
+                while ($wpQuery->have_posts()){
+                    $wpQuery->the_post();
+                    $post = $wpQuery->post;
+
+                    $postID 	= $post->ID;
+                    $title 		= $post->post_title;
+                    
+                    $price		= get_post_meta($postID, $meta_key . 'price', true);
+                    $saleOff	= get_post_meta($postID, $meta_key . 'sale-off', true);
+
+                    if(absint($saleOff) >0 ){
+                        $price = $saleOff;
+                    }
+
+                    $quality = $ssCart[$postID];
+
+                    $money = $price * $quality;
+
+                    $cartHTML .= '<tr>
+                                    <td>' . $postID . '</td>
+                                    <td>' . $title . '</td>
+                                    <td>' . $price . '</td>
+                                    <td><input type="text" name="price[' . $postID . ']" size="5" 
+                                            id="price-' . $postID . '" style="text-align: center;" 
+                                            value="' . $quality . '">
+                                    </td>
+                                    <td class="money-pay">' . $money . '</td>
+                                    <td class="control">update | remove</td>
+                                </tr>';
+                }
             }
-			$cartHTML .= '<tr>
-							<td>259</td>
-							<td>iPhone 6</td>
-							<td>769</td>
-							<td><input type="text" name="price[259]" size="5" 
-									id="price-259" style="text-align: center;" 
-									value="1">
-							</td>
-							<td class="money-pay">769</td>
-							<td class="control">update | remove</td>
-						</tr>';
-					
 $cartHTML .= '</tbody>
 	</table>
 	<div id="total">
