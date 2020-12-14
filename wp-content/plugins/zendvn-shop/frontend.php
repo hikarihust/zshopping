@@ -11,6 +11,11 @@ class Zendvn_Sp_Frontend{
 		add_filter('template_include', array($this,'load_template'));
 
 		add_action('init', array($this,'session_start'),1);
+		add_action('init', array($this,'do_output_buffer'));
+	}
+
+	public function do_output_buffer(){
+		ob_start();
 	}
 
 	public function session_start(){

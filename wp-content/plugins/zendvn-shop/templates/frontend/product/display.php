@@ -71,9 +71,24 @@ $meta_key = '_zendvn_sp_zsproduct_';
 			<li><a href="#" class="r360">Xoay hình 360 độ</a>
 			</li>
 			<li class="detail-cart">
+				<?php 
+					$ss 		= $zController->getHelper('Session');
+					$ssCart 	= $ss->get('zcart',array());
+					$total_item = 0;
+					if(count($ssCart)>0){
+						foreach ($ssCart as $key => $val){
+							$total_item += $val;
+						}
+					}
+		
+					$str_item = $total_item . ' product';
+					if($total_item > 1){
+						$str_item = $total_item . ' products';
+					}
+				?>
 				<div class="alert-cart">Your cart updated</div>
 				<div>
-					Currently, <span class="number_product">6 products</span> in your
+					Currently, <span class="number_product"><?php echo $str_item;?></span> in your
 					cart
 				</div>
 				<div>

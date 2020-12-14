@@ -35,6 +35,8 @@ class Zendvn_Sp_Product_Controller{
 			
 			$ss->set('zcart',$ssCart);
 		}
+		$url = site_url('?zsproduct=' . get_query_var('zsproduct'));
+		wp_redirect($url);
 	}
 	
 	public function display(){
