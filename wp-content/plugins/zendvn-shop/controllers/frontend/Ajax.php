@@ -3,7 +3,8 @@ class Zendvn_Sp_Ajax_Controller{
 	
 	public function __construct(){
 		/*==============Ajax Frontend========*/
-        add_action('wp_ajax_add_to_cart',array($this,'add_to_cart'));
+		add_action('wp_ajax_add_to_cart',array($this,'add_to_cart'));
+		//add_action('wp_ajax_nopriv_add_to_cart', array($this,'add_to_cart'));
         
         add_action('wp_enqueue_scripts',array($this,'add_js_file'));
         add_action('wp_head',array($this,'add_ajax_library'));
