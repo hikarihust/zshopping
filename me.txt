@@ -188,4 +188,5 @@ Hiển thị sản phẩm (FrontEnd)
         category_description( int $category )
             Retrieves category description.
     Detail Product 1
+    Detail Product 2
     
