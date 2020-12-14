@@ -38,11 +38,20 @@ $meta_key = '_zendvn_sp_zsproduct_';
             src="<?php echo $firstImg;?>"
 			alt="<?php the_title();?>">
 		<ul class="product-thumbs">
+		<?php 
+			foreach ($newPicArray as $key => $val){
+				$imgThumbnail = $zController->getHelper('ImgThumbnail');
+				$imgUrl = $imgThumbnail->resize($key, 80, 53);
+		?>
 			<li><img width="80px" height="53px"
-				src="http://zshopping.xyz/wp-content/plugins/zendvn-shop/public/products/iphone/iphone-6/iphone-6-plus-64gb-bac-1-480x480-1.jpg"
+				src="<?php echo $imgUrl;?>"
 				alt=""
-				data-img="">
-            </li>
+				data-img="<?php echo $key;?>">
+			</li>
+		<?php 
+			}
+		
+		?>
 		</ul>
 		<div class="clr"></div>
 	</div>

@@ -7,7 +7,17 @@ class Zendvn_Sp_Frontend{
 		add_action('init', array($zController->getModel('Category'),'create'));
 		add_action('init', array($zController->getModel('Product'),'create'));
 		add_action('wp_enqueue_scripts', array($this,'add_css_file'));
+		add_action('wp_enqueue_scripts', array($this,'add_js_file'));
 		add_filter('template_include', array($this,'load_template'));
+	}
+
+	public function add_js_file(){
+		global $zController;
+		if(get_query_var('zsproduct') != ''){
+			wp_register_script('zendvn_sp_product_fe', $zController->getJsUrl('product.js'),
+								array('jquery'),'1.0',true);
+			wp_enqueue_script('zendvn_sp_product_fe');
+		}
 	}
 
 	public function add_css_file(){

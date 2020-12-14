@@ -189,4 +189,5 @@ Hiển thị sản phẩm (FrontEnd)
             Retrieves category description.
     Detail Product 1
     Detail Product 2
+    Detail Product 3
     
