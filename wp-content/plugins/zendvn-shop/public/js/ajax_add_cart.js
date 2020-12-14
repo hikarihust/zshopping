@@ -40,8 +40,27 @@ jQuery(document).ready(function($){
 			data		: dataObj,
 			dataType	: "text",
 			success		: function(data, status, jsXHR){
-
+							$(linkUpdate).parent().prev().html(data);
+										
+							$('#zendvn_sp_cart_table .show-alert').removeClass()
+																.addClass('show-alert')
+																.addClass('cart-update')
+																.html('Item updated');
+							total();
 						}
 		});
 	});
+
+	//=============================================
+	// TOTAL
+	//==============================================
+	total();
+	function total(){
+		var total_pay = 0;
+		$("td.money-pay").each(function(index, obj){
+			total_pay = total_pay + parseInt($(obj).text());
+		});
+		
+		$("#total .pay").text(total_pay);
+	}
 });
