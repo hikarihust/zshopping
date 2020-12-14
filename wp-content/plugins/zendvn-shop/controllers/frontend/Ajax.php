@@ -10,8 +10,10 @@ class Zendvn_Sp_Ajax_Controller{
     }
     
 	public function add_to_cart(){
-
-		echo __METHOD__;
+		global $zController;
+        $zController->getController('Cart','/frontend');
+        
+        wp_die();
     }
     
 	public function add_js_file(){
@@ -25,7 +27,14 @@ class Zendvn_Sp_Ajax_Controller{
 		}
     }
     
-	public function add_ajax_library(){
+	public function add_ajax_library(){	
+        $ajax_nonce = wp_create_nonce('ajax-security-code');
 
+		$html = '<script type="text/javascript">';
+        $html .= ' var ajaxurl = "' . admin_url('admin-ajax.php') . '"; ';
+        $html .= ' var security_code = "' . $ajax_nonce . '"; ';
+		$html .= '</script>';
+	
+		echo $html;
 	}
 }
