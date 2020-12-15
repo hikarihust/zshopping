@@ -211,4 +211,5 @@ Xây dựng hệ thống quản lý đơn đặt hàng
             total();
         });	
     Phương thức thanh toán
+    Send mail 
     
